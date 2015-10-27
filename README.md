@@ -17,5 +17,27 @@ You can use the automatic page generator to publish GitHub Pages sites for any p
 
 Warning: You must create the repository with the naming convention described above or you will not be able to publish your GitHub Pages site.
 
+---
 
-
+svn co --username zekom https://github.com/ZekomZ/Emisije-Subversion
+A    Emisije-Subversion/branches
+A    Emisije-Subversion/branches/gh-pages
+A    Emisije-Subversion/branches/gh-pages/images
+A    Emisije-Subversion/branches/gh-pages/images/code.png
+A    Emisije-Subversion/branches/gh-pages/images/pattern.png
+A    Emisije-Subversion/branches/gh-pages/images/tar.png
+A    Emisije-Subversion/branches/gh-pages/images/top.png
+A    Emisije-Subversion/branches/gh-pages/images/zip.png
+A    Emisije-Subversion/branches/gh-pages/index.html
+A    Emisije-Subversion/branches/gh-pages/javascripts
+A    Emisije-Subversion/branches/gh-pages/javascripts/script.js
+A    Emisije-Subversion/branches/gh-pages/params.json
+A    Emisije-Subversion/branches/gh-pages/stylesheets
+A    Emisije-Subversion/branches/gh-pages/stylesheets/github-dark.css
+A    Emisije-Subversion/branches/gh-pages/stylesheets/stylesheet.css
+A    Emisije-Subversion/trunk
+A    Emisije-Subversion/trunk/.gitignore
+A    Emisije-Subversion/trunk/LICENSE
+A    Emisije-Subversion/trunk/README.md
+Checked out revision 3.
+zwz@zwz-HP-ProBook-470-G0:~/workspace/www/Zekom-Subversion/Emisije-3-3-3$

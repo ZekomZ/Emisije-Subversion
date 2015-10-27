@@ -93,7 +93,7 @@ Then, get your checkout ready:
 
     Make an empty checkout of the repository:
 
-    svn co --depth empty https://github.com/user/repo
+    svn co --depth empty https://github.com/ZekomZ/Emisije-Subversion
     # Checked out revision 1.
     cd repo
 

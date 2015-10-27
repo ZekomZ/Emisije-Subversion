@@ -17,6 +17,8 @@ You can use the automatic page generator to publish GitHub Pages sites for any p
 
 Warning: You must create the repository with the naming convention described above or you will not be able to publish your GitHub Pages site.
 
+# git clone https://github.com/Zekom/Emisije-Subversion
+
 ---
 https://sites.google.com/site/zekomtributemagazine/zekom---github-repository/subversion/http-askubuntu-com-questions-36243-how-to-checkout-using-subversion-and-https
 

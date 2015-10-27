@@ -135,7 +135,7 @@ branch-snapshot
 You can also confirm the new branch via the command line:
 
 git fetch
-# From https://github.com/user/repo/
+# From https://github.com/ZekomZ/Emisije-Subversion
 # * [new branch]    more_awesome -> origin/more_awesome
 
 Making commits to Subversion
@@ -163,11 +163,11 @@ Switching between branches
 
 To switch between branches, you'll probably want to start with a checkout of trunk:
 
-svn co --depth empty https://github.com/user/repo/trunk
+svn co --depth empty https://github.com/ZekomZ/Emisije-Subversion
 
 Then, you can switch to another branch:
 
-svn switch https://github.com/user/repo/branches/more_awesome
+svn switch https://github.com/ZekomZ/Emisije-Subversion
 
 Finding the Git commit SHA for a Subversion commit
 

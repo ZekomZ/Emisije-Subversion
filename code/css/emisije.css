@@ -1,0 +1,128 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 1.6.2015, 3:00:33
+    Author     : zwz
+*/
+a
+{
+    font-size: large;
+    color: #0055BB;
+    font-weight: bold;
+}
+
+h1
+{
+    color:#005800;  
+}
+
+iframe
+{
+    background-color: whitesmoke;
+    border:solid thick gray;
+}
+.html-div-body
+           {
+               width:77%;
+               margin:auto;
+               border:solid thick green;
+               overflow:hidden;
+               clear:both;
+               
+           }
+
+
+.html-div
+           {
+               width:88%;
+               float:left;
+               border:solid thick gray;
+               margin-left:33px;
+               background: whitesmoke;
+           }
+
+.html-div-header
+           {
+               width:100%;
+               margin:auto;
+               clear:both;
+               border:solid thick gray;
+           }
+         
+           
+.html-div-header-frame-left
+{
+    width:30%;
+    float:left;
+    overflow-x: hidden;
+    
+}
+
+.html-div-header-frame-right
+{
+    width:70%;
+    float:right;
+    
+}
+
+.html-div-body-frame-left
+{
+    width:65%;
+    float:left;
+    overflow-x: hidden;    
+    background-image: url(../img/wallpaper-Zekom.gif);
+    background-position: center top;
+    background-repeat: repeat;
+    color: whitesmoke;
+}
+
+
+
+.html-div-body-frame-right
+{
+    width:35%;
+    float:right;
+    overflow-x: hidden;    
+}
+
+.html-div-footer
+{
+    width:100%;
+    float:left;
+    clear:both;
+    overflow-x: hidden;
+    border:solid thick gray;
+    background-image: url('../img/EMS.png');
+}
+
+.html-div-footer-frame-left
+{
+    width:30%;
+    float:left;
+    overflow-x: hidden;    
+    
+}
+
+.html-div-footer-frame-right
+{
+    width:70%;
+    float:right;
+    overflow-x: hidden;    
+}
+
+.html-div-footer-frame-right-2col-left
+{
+    width:50%;
+    float:left;
+    overflow-x: hidden;    
+}
+.html-div-footer-frame-right-2col-right
+{
+    width:50%;
+    float:right;
+    overflow-x: hidden;
+}
+

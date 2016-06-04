@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Rails editor</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+
+      #div-control-box
+      {
+          width:100%;
+          height:100px;
+          overflow-y: scroll;
+
+      }
+
+      #div-control-buttons
+      {
+          width:30%;
+          height:100%;
+          float:left
+
+      }
+
+
+      #Div-Path-Data
+      {
+          width:70%;
+          float:right;
+      }
+
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPwnxAuaFXMzrgYHHEAmCS03Rofy3fQH8"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+
+    </script>
+    <script src="Rails-Editor.js"></script>
+    <script src="Transit.js"></script>
+  </head>
+  <body>
+
+      <div id="div-control-box">
+        <div id="div-control-buttons">
+
+          <input type="button" onclick="ResetMarkers()" value="Reset"/>
+          <input type="button" onclick="ZoomStationA()" value="ZoomA"/>
+          <input type="button" onclick="ZoomStationB()" value="ZoomB"/>
+          <input type="button" onclick="DeleteLastMarker()" value="Delete ( last ) marker"/>
+          <input type="button" onclick="StartMacro(11)" value="StartMacro()"/>
+          <div id="Div-Station"></div>
+          <div id="Div-Station-Next"></div>
+        </div>
+          <form >
+              <div id="Div-Path-Data">
+                  <input type="text" name="StationA" value="111"></input>
+                  <input type="text" name="StationB" value="222"></input>
+                  <input type="button" onclick=" onClickInfo();" value="Train info"></input>
+              </div>
+          </form>
+
+      </div>
+
+      <div id="map-canvas"></div>
+
+  </body>
+</html>

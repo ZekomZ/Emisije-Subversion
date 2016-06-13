@@ -241,7 +241,7 @@ if (StationAID>=StationBID) // ID-ji postaj naj bodo urejeni naraščajoče od m
 }
 
 document.getElementById("Div-Path-Data").innerHTML=
-       "Train-Path-Data :<br/>" +
+       "Transit-Path-Data :<br/>" +
        "-->"+StationAID+"-"+StationBID+"', '"+StationAID+"', '"+StationBID+"'<--";
 
 }

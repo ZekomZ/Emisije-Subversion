@@ -382,8 +382,8 @@ function ZoomStationA()
 {
 map.panTo(trainStationMarkerA.getPosition());
 window.setTimeout(function() {
-  map.setZoom(10);
-}, 500);
+  map.setZoom(16);
+}, 1000);
 
 }
 
@@ -393,14 +393,14 @@ map.panTo(trainStationMarkerA.getPosition());
 
 window.setTimeout(function() {
   map.setZoom(7);
-}, 500);
+}, 1000);
 
 window.setTimeout(function() {
   map.panTo(trainStationMarkerB.getPosition());
 }, 1500);
 
 window.setTimeout(function() {
-  map.setZoom(10);
+  map.setZoom(16);
 }, 3000);
 
 }

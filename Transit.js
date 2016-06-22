@@ -182,7 +182,7 @@ railPathAll[railPathAll.length-1].setMap(map);
 function initialize() {
 // Vir : https://developers.google.com/maps/documentation/javascript/markers
 var mapOptions = {
-zoom: 8,
+zoom: 9,
 // Center the map on Kamnik, Slovenija.
 center: new google.maps.LatLng(46.0587, 14.5127)
 };
@@ -382,7 +382,7 @@ function ZoomStationA()
 {
 map.panTo(trainStationMarkerA.getPosition());
 window.setTimeout(function() {
-  map.setZoom(16);
+  map.setZoom(11);
 }, 1000);
 
 }
@@ -400,7 +400,7 @@ window.setTimeout(function() {
 }, 1500);
 
 window.setTimeout(function() {
-  map.setZoom(16);
+  map.setZoom(11);
 }, 3000);
 
 }

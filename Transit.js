@@ -383,7 +383,7 @@ function ZoomStationA()
 map.panTo(trainStationMarkerA.getPosition());
 window.setTimeout(function() {
   map.setZoom(11);
-}, 1000);
+}, 500);
 
 }
 
@@ -393,15 +393,15 @@ map.panTo(trainStationMarkerA.getPosition());
 
 window.setTimeout(function() {
   map.setZoom(7);
-}, 1000);
+}, 500);
 
 window.setTimeout(function() {
   map.panTo(trainStationMarkerB.getPosition());
-}, 1500);
+}, 1000);
 
 window.setTimeout(function() {
   map.setZoom(11);
-}, 3000);
+}, 1000);
 
 }
 

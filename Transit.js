@@ -405,6 +405,24 @@ window.setTimeout(function() {
 
 }
 
+function ZoomStationx()
+{
+map.panTo(trainStationMarkerA.getPosition());
+
+window.setTimeout(function() {
+  map.setZoom(11);
+}, 500);
+
+window.setTimeout(function() {
+  map.panTo(trainStationMarkerB.getPosition());
+}, 1000);
+
+window.setTimeout(function() {
+  map.setZoom(9);
+}, 2000);
+
+}
+
 function StationMarkersNotifyPHP ()
 {
 //alert("StationMarkersNotifyPHP");

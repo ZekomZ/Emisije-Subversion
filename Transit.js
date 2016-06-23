@@ -382,7 +382,7 @@ function ZoomStationA()
 {
 map.panTo(trainStationMarkerA.getPosition());
 window.setTimeout(function() {
-  map.setZoom(11);
+  map.setZoom(16);
 }, 500);
 
 }
@@ -400,7 +400,7 @@ window.setTimeout(function() {
 }, 1000);
 
 window.setTimeout(function() {
-  map.setZoom(11);
+  map.setZoom(16);
 }, 1000);
 
 }

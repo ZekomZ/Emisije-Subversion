@@ -651,8 +651,8 @@ SelectStationMarker(Station);
 onClickInfo();
 
 setTimeout(ZoomStationA(),1000);
-setTimeout(ZoomStationB(),2000);
-setTimeout(ZoomStationX(),3000);
-if ( RepeatX>0 ) {setTimeout(StartMacro(RepeatX-1),10000);}
+setTimeout(ZoomStationB(),3000);
+setTimeout(ZoomStationX(),5000);
+if ( RepeatX>0 ) {setTimeout(StartMacro(RepeatX-1),11000);}
 
 }

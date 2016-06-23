@@ -405,7 +405,7 @@ window.setTimeout(function() {
 
 }
 
-function ZoomStationx()
+function ZoomStationX()
 {
 map.panTo(trainStationMarkerA.getPosition());
 

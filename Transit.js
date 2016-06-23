@@ -652,7 +652,7 @@ onClickInfo();
 
 setTimeout(ZoomStationA(),1000);
 setTimeout(ZoomStationB(),3000);
-setTimeout(ZoomStationX(),5000);
+setTimeout(ZoomStationX(),9000);
 
 if ( RepeatX>0 ) {setTimeout(StartMacro(RepeatX-1),11000);}
 

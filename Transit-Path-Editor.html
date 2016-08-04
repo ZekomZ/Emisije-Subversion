@@ -3,50 +3,67 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Rails editor</title>
-    <style>
-      html, body, #map-canvas {
-        height: 100%;
-        margin: 0px;
-        padding: 0px
-      }
-
-      #div-control-box
-      {
-          width:100%;
-          height:100px;
-          overflow-y: scroll;
-
-      }
-
-      #div-control-buttons
-      {
-          width:30%;
-          height:100%;
-          float:left
-
-      }
-
-
-      #Div-Path-Data
-      {
-          width:70%;
-          float:right;
-      }
-
-    </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPwnxAuaFXMzrgYHHEAmCS03Rofy3fQH8"></script>
+    <title>Transit.js - editor</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3ftXQcNKQgHXgNbZ7bud7S0N_TUFyubQ"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/zekom-transit-editor.css">
 
-    </script>
-    <script src="Bus-Editor.js"></script>
-    <script src="Transit.js"></script>
+    <script type="text/javascript" src="Transit.js"></script>
+    <script type="text/javascript" src="Bus-Editor.js"></script>
+    <script type="text/javascript" src="Gama-Editor.js"></script>
+
   </head>
   <body>
+    <div class="div-toolbar-header-3col">
+    <div class="div-toolbar-header">
+      <div class="div-toolbar-header-frame">
+        <div id="div-control-box">
+            <h1> Emisije Co2 v okolje </h1>
+            <form action="">
+              <input id="checkbox-train" type="checkbox" onclick="ResetStations()" name="vehicle" value="Train" checked>Slovenske železnice
+              <input id="checkbox-bus" type="checkbox" onclick="ResetStations()" name="vehicle" value="Bus" checked>LPP - Ljubljanski potniški promet<br>
+              <input id="checkbox-gama" type="checkbox" onclick="ResetStations()" name="vehicle" value="Gama">NEK - Gama karte
+            </form>
+          </div>
+      </div>
 
-      <div id="div-control-box">
-        <div id="div-control-buttons">
+    <div class="div-toolbar-header-frame">
 
+      <div id="div-control-buttons">
+         <input type="button" onmouseover="ButtonHelpInfo(1)" onclick="ResetStations()" value="Reset Map"/>
+         <input type="button" onmouseover="ButtonHelpInfo(2)" onclick="ResetMarkers()" value="Reset Markers"/>
+         <input type="button" onmouseover="ButtonHelpInfo(3)" onclick="DeleteLastMarker()" value="Delete ( last ) marker"/>
+       </div>
+
+      <div id="div-control-buttons">
+        <input type="button" onmouseover="ButtonHelpInfo(4)" onclick="ZoomStationX()" value="Zoom:Default"/>
+        <input type="button" onmouseover="ButtonHelpInfo(5)" onclick="ZoomStationA()" value="ZoomA"/>
+        <input type="button" onmouseover="ButtonHelpInfo(6)" onclick="ZoomStationB()" value="ZoomB"/>
+     </div>
+
+    </div>
+  </div>
+
+  <div class="div-toolbar-header-right">
+    <div id="div-control-buttons">
+      <input type="button" onmouseover="ButtonHelpInfo(7)" onclick="StartMacro(0)" value="Start()"/>
+    </div>
+    <div id="div-path-data">
+        <div id="Div-Station"></div>
+        <div id="Div-Station-Next"></div>
+    </div>
+  </div>
+
+  </div>
+
+
+<<<<<<< .mine
+
+      <div id="div-map-canvas"></div>
+      <div class="div-toolbar-footer">
+        <div class="div-toolbar-footer-frame">
+          <iframe id="iframe-toolbar-left" class="iframe-toolbar-footer" src="http://www.lpp.si/sites/default/files/lpp_vozniredi/iskalnik/index.php?stop=0&line=0"></iframe>
+=======
           <input type="button" onclick="ResetMarkers()" value="Reset"/>
            <input type="button" onclick="ZoomStationX()" value="Zoom:Default"/>
           <input type="button" onclick="ZoomStationA()" value="ZoomA"/>
@@ -55,7 +72,16 @@
           <input type="button" onclick="StartMacro(3)" value="StartMacro()"/>
           <div id="Div-Station"></div>
           <div id="Div-Station-Next"></div>
+>>>>>>> .r48
         </div>
+<<<<<<< .mine
+        <div class="div-toolbar-footer-frame">
+            <iframe id="iframe-toolbar-right" class="iframe-toolbar-footer" src="http://bus.lpp.si/"></iframe>
+        </div>
+      </div>
+      <div class="div-toolbar-footer-breadcrumbs">
+        <a target="_blank" href="https://plus.google.com/102962854949157079552/auto">ZekomZ - Zekom Tribute Magazine</a>
+=======
           <form >
               <div id="Div-Path-Data">
                   <input type="text" name="StationA" value="111"></input>
@@ -63,10 +89,16 @@
                   <input type="button" onclick=" onClickInfo();" value="Transit info"></input>
               </div>
           </form>
+>>>>>>> .r48
+
+        O
+
+        <a target="_blank" href="https://www.facebook.com/ZekomTributeMagazine">www.facebook.com/ZekomTributeMagazine</a>
+        <br>Zekom Tribute Magazine - Community Page about All your base are belong to us
+        <br>·<a target="_blank" href="http://en.wikipedia.org/wiki/All_your_base_are_belong_to_us"> http://en.wikipedia.org/wiki/All_your_base_are_belong_to_us· </a>
 
       </div>
 
-      <div id="map-canvas"></div>
 
   </body>
 </html>

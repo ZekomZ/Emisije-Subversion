@@ -1,0 +1,63 @@
+canvas
+{
+  background: #AA77CC;
+}
+iframe
+{
+  clear:both;
+}
+
+.div-main-frame-transit
+{
+  clear:both;
+  width:99%;
+  height:1111px;
+  float:left;
+}
+
+iframe.iframe-transit-map
+{
+  width:88%;
+  height:1565px;
+  float: left;
+  margin-left: 5%;
+  clear:both;
+  overflow: hidden;
+}
+
+.iframe-toolbar-clone-header
+{
+  float:left;
+  clear:both;
+  margin-bottom: 100px;
+}
+
+img.img-euro
+{
+  margin-left: auto;
+  margin-top: 131px;
+  margin-right: 1%;
+  float:left;
+  clear:both;
+}
+
+#div-cookies
+{
+  width:100%;
+  height: 100px;
+  visibility: hidden;
+  background:#2d8b4f;
+  clear:both;
+  text-align: center;
+  font-size: 22px;
+}
+#div-cookies-ok
+{
+  width:5%;
+  height:30px;
+  text-align: center;
+  background: #f6c048;
+  margin-right:;
+  margin-left:47%;
+  margin-top: 10px;
+}

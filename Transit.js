@@ -1,20 +1,22 @@
-    // Vir : https://developers.google.com/maps/documentation/javascript/shapes
+// Vir : https://developers.google.com/maps/documentation/javascript/shapes
 // This example creates an interactive map which constructs a
 // polyline based on user clicks. Note that the polyline only appears
 // once its path property contains two LatLng coordinates.
 //var editMode="<?php echo isset($_GET["mode"])?$_GET["mode"]:""?>";
 
-var editMode="trains";
+var editMode="transit";
 var markers=[];
-var stationMarkers=[];
+var StationMarkers=[];
 var stationMarkerObjects=[];
-var railPathAll=[];
-var railPathCoordinates=[];
-
-var TrainPathCoordinates=[];
+var TransitPathAll=[];
+var TransitPathCoordinates=[];
+var TrainStationCount=0;
+var TransitPathCoordinates=[];
+var TransitFixedPoint=49;
+var TransitTicketNumber=0;
 //var railPolyLines=[];
 //railPolyLines[0]=[[45.8985,15.655],[45.923,15.59],[45.987,15.4701]];
-var map;
+var map=null;
 
 StationInfoWindowA = new google.maps.InfoWindow({
   content: "StationsInfoText[markerID]"
@@ -26,7 +28,7 @@ StationInfoWindowB = new google.maps.InfoWindow({
 
 var polyOptions = {};
 
-var trainStationIcon = {
+var TransitStationIcon = {
 path: 'M 0,0 -10,-3 -6,-10 0,-10 6,-10 10,-3 z',
 fillColor: 'blue',
 fillOpacity: 0.8,
@@ -37,7 +39,7 @@ strokeWeight: 1
 
 if (editMode=="rails")
 {
-var trainStationIcon = {
+var TransitStationIcon = {
 path: 'M 0,0 -5,-3 -3,-5 0,-5 3,-5 5,-3 z',
 fillColor: 'blue',
 fillOpacity: 0.6,
@@ -47,9 +49,9 @@ strokeWeight: 1
 };
 }
 
-if (editMode=="trains")
+if (editMode=="transit")
 {
-var trainStationIcon = {
+var TransitStationIcon = {
 path: 'M 0,0 -5,-3 -3,-5 0,-5 3,-5 5,-3 z',
 fillColor: 'blue',
 fillOpacity: 0.3,
@@ -59,7 +61,7 @@ strokeWeight: 1
 };
 }
 
-var trainStationAIcon = {
+var TransitStationAIcon = {
 path: 'M 0,0 -30,-20 0,-10 31,-20 z',
 fillColor: 'green',
 fillOpacity: 0.8,
@@ -68,7 +70,7 @@ strokeColor: 'red',
 strokeWeight: 1
 };
 
-var trainStationBIcon = {
+var TransitStationBIcon = {
 path: 'M 0,0 -30,20 0,10 31,20 z',
 fillColor: 'red',
 fillOpacity: 0.8,
@@ -77,17 +79,17 @@ strokeColor: 'green',
 strokeWeight: 1
 };
 
-var trainStationSelected=0;
-var trainStationMarkerASelectedID=1;
-var trainStationMarkerBSelectedID=1;
+var TransitStationSelected=0;
+var TransitStationMarkerASelectedID=1;
+var TransitStationMarkerBSelectedID=1;
 
-var trainStationMarkerA= new google.maps.Marker({
+var TransitStationMarkerA= new google.maps.Marker({
 position: new google.maps.LatLng(46.886277,13.902437),
 title: '#StationA' ,
 map: map
 });
 
-var trainStationMarkerB= new google.maps.Marker({
+var TransitStationMarkerB= new google.maps.Marker({
 position: new google.maps.LatLng(46.05809,13.617254),
 title: '#StationB' ,
 map: map
@@ -123,42 +125,47 @@ function InitRailPolyLines()
 var StationA=-1;
 var StationB=-1;
 
-var i=1000;
+var i=-1;
 //alert("InitRailPolyLines");
 //var railPathCoordinates=[]; <--- global variable
+TrainStationCount=BusPolyLines[0].length;
+var busPolyLinesIndex = TrainStationCount;
 
-for (railPath of railPolyLines )
+
+for ( TransitPolyLines of busPolyLines )
 {
+  busPolyLinesIndex++;
+  for (TransitPath of TransitPolyLines)
+  {
    i++;
-   railPathCoordinates=[];
+   TransitPathCoordinates=[];
 
-   for ( railCoord of railPath)
+   for ( TransitPathCoord of TransitPath)
    {
-       //alert(railCoord);
-       railPathCoordinates[railPathCoordinates.length]=new google.maps.LatLng(railCoord[0], railCoord[1]);
-       //alert(railCoord.length);
-       if (railCoord.length===4) // Pri prvem zapisu je v 3. in 4. stolpcu še zaporedna št. postaje
+       //alert(TransitPathCoord);
+       TransitPathCoordinates[TransitPathCoordinates.length]=new google.maps.LatLng(TransitPathCoord[0], TransitPathCoord[1]);
+       //alert(TransitPathCoord.length);
+       if (TransitPathCoord.length===4) // Pri prvem zapisu je v 3. in 4. stolpcu še zaporedna št. postaje
        {
-           StationA=FindMarkerByStationID(railCoord[2]);
-           StationB=FindMarkerByStationID(railCoord[3]);
+           StationA=FindMarkerByStationID(TransitPathCoord[2]);
+           StationB=FindMarkerByStationID(TransitPathCoord[3]);
            //alert(StationA+":"+StationB);
        }
    }
 
 //alert("Add new polyline:"+"i:"+ i +":" + StationA +" : "+StationB);
 
-railPathAll.push( new google.maps.Polyline({
-    path: railPathCoordinates,
-    geodesic: true,
-    strokeColor: '#CCBB11',
-    strokeOpacity: 1.0,
-    strokeWeight: 6
-}));
-
+TransitPathAll.push( new google.maps.Polyline({
+      path: TransitPathCoordinates,
+      geodesic: true,
+      strokeColor: TransitPolyLinesColor[busPolyLinesIndex],
+      strokeOpacity: 0.7,
+      strokeWeight: 6
+  }));
 
 //alert("Add Listener: "+railPathAll[railPathAll.length-1]+":"+i+":"+StationA+":"+StationB);
 
-google.maps.event.addListener(railPathAll[railPathAll.length-1],
+google.maps.event.addListener(TransitPathAll[TransitPathAll.length-1],
 
         'click', function (i,StationMarkerIDA,StationMarkerIDB)
            {
@@ -172,11 +179,14 @@ google.maps.event.addListener(railPathAll[railPathAll.length-1],
 
                };
 
-           }(i,StationA,StationB)
+           }(i-TrainStationCount,StationA,StationB)
         );
 
-railPathAll[railPathAll.length-1].setMap(map);
-}
+        TransitPathAll[TransitPathAll.length-1].setMap(map);
+      }
+
+    }
+
 }
 
 function initialize() {
@@ -187,16 +197,17 @@ zoom: 9,
 center: new google.maps.LatLng(46.0587, 14.5127)
 };
 
-map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  map = new google.maps.Map(document.getElementById('div-map-canvas'), mapOptions);
 
 ResetMarkers();
 AddStationMarkers();
-if (editMode=="rails"){InitRailPolyLines();}
-if (editMode=="trains"){InitTrainPath();}
+InitTransitPath();
+if ($("input#checkbox-gama:checkbox:checked").val()=="Gama"){LoadGamaInfo();}
+
 // Add a listener for the click event
 google.maps.event.addListener(map, 'click', addLatLng);
-google.maps.event.addListener(trainStationMarkerA, "mouseover", DisplayStationInfo(1,StationInfoWindowA));
-google.maps.event.addListener(trainStationMarkerB, "mouseover", DisplayStationInfo(2,StationInfoWindowB));
+google.maps.event.addListener(TransitStationMarkerA, "mouseover", DisplayStationInfo(1,StationInfoWindowA));
+google.maps.event.addListener(TransitStationMarkerB, "mouseover", DisplayStationInfo(2,StationInfoWindowB));
 
 }
 
@@ -230,8 +241,8 @@ poly.setMap(map);
 
 function addSQLStationRail()
 {
-StationAID=StationsData[trainStationMarkerASelectedID][0];
-StationBID=StationsData[trainStationMarkerBSelectedID][0];
+StationAID=StationsData[TransitStationMarkerASelectedID][0];
+StationBID=StationsData[TransitStationMarkerBSelectedID][0];
 
 if (StationAID>=StationBID) // ID-ji postaj naj bodo urejeni naraščajoče od manjšega ID, proti večjemu, če je StationAID > StationBID, postaji zamenjamo
 {
@@ -240,9 +251,9 @@ if (StationAID>=StationBID) // ID-ji postaj naj bodo urejeni naraščajoče od m
    StationAID=StationTMP;
 }
 
-document.getElementById("Div-Path-Data").innerHTML=
+document.getElementById("div-path-data").innerHTML=
        "Transit-Path-Data :<br/>" +
-       "-->"+StationAID+"-"+StationBID+"', '"+StationAID+"', '"+StationBID+"'<--";
+       "-->"+StationAID+"-"+StationBID+"' <---,---> '"+StationAID+"', '"+StationBID+"'<--";
 
 }
 
@@ -277,7 +288,7 @@ addSQLStationRail();
 for (var i=0;i<markers.length;i++)
 {
 
-"INSERT INTO `test`.`Train-Rails-Details`"
+"INSERT INTO `test`.`Transit-Rails-Details`"
 "(`IDRailABLatLng`, `IDRailAB`, `RailIndex`, `Lat`, `Lng`) "
 "VALUES ('99999', '11111', '1', '123123', '2312312');"
 
@@ -292,13 +303,39 @@ ResetPolyLine();
 function ResetMarkers()
 {
 
-for (var i=0;i<markers.length;i++)
-{
+  for (var i=0;i<markers.length;i++)
+  {
     markers[i].setMap(null);
-}
-markers=[];
+  }
+  markers=[];
 
-ResetPolyLine();
+  ResetPolyLine();
+}
+
+function ResetStations()
+{
+   for (var TransitPathSingle of TransitPath)
+   {
+     TransitPathSingle.setMap(null);
+   }
+   TransitPath=[];
+   TransitPathCoordinates=[];
+
+   for (var StationMarkersSingle of StationMarkers)
+   {
+     StationMarkersSingle.setMap(null);
+   }
+
+   StationMarkers=[];
+
+   //$('#div-path-data').html($("input#checkbox-train:checkbox:checked").val()+'<------------');
+   //$('#div-path-data').append($("input#checkbox-bus:checkbox:checked").val()+'<<---');
+   //$('#div-path-data').append($("input#checkbox-gama:checkbox:checked").val()+'<<---');
+
+   initialize();
+
+
+
 }
 
 function DeleteLastMarker()
@@ -310,6 +347,7 @@ ResetPolyLine();
 
 }
 
+// Source : https://developers.google.com/maps/documentation/javascript/examples/event-domListener
 google.maps.event.addDomListener(window, 'load', initialize);
 
 function DisplayStationInfo(markerID, StationInfoWindow )
@@ -326,21 +364,21 @@ StationInfoWindow = new google.maps.InfoWindow({
 
 function SelectStationMarker(markerID)
 {
-//alert("trainStationSelected"+trainStationSelected);
+//alert("TransitStationSelected"+TransitStationSelected);
 
 ResetMarkers();
-switch (trainStationSelected)
+switch (TransitStationSelected)
 {
 case 0 :
     RailSelectA(markerID);
-    //alert("RailSelectA()"+trainStationSelected);
-    trainStationSelected=10;
+    //alert("RailSelectA()"+TransitStationSelected);
+    TransitStationSelected=10;
     break;
 
 case 10 :
     RailSelectB(markerID);
-    //alert("RailSelectB()"+trainStationSelected);
-    trainStationSelected=0;
+    //alert("RailSelectB()"+TransitStationSelected);
+    TransitStationSelected=0;
     break;
 }
 
@@ -350,37 +388,36 @@ addSQLStationRail();
 
 function RailSelectA(markerID)
 {
-trainStationMarkerA.setPosition(
+TransitStationMarkerA.setPosition(
         new google.maps.LatLng(
-        stationMarkers[markerID].getPosition().lat(),
-        stationMarkers[markerID].getPosition().lng())
+        StationMarkers[markerID].getPosition().lat(),
+        StationMarkers[markerID].getPosition().lng())
 );
 
-trainStationMarkerASelectedID=markerID;
+TransitStationMarkerASelectedID=markerID;
 
 //alert("RailSelectA:"+stationMarkers[markerID].getPosition().lat()+":"+stationMarkers[markerID].getPosition().lng());
 
-//document.getElementById("div-path-data").innerHTML=trainStationMarkerA.keys.toString();
+//document.getElementById("div-path-data").innerHTML=TransitStationMarkerA.keys.toString();
 }
 
 function RailSelectB(markerID)
 {
-    trainStationMarkerB.setPosition(
+    TransitStationMarkerB.setPosition(
         new google.maps.LatLng(
-        stationMarkers[markerID].getPosition().lat(),
-        stationMarkers[markerID].getPosition().lng())
+        StationMarkers[markerID].getPosition().lat(),
+        StationMarkers[markerID].getPosition().lng())
 );
 
-trainStationMarkerBSelectedID=markerID;
+TransitStationMarkerBSelectedID=markerID;
 
 //alert("RailSelectB:"+stationMarkers[markerID].getPosition().lat()+":"+stationMarkers[markerID].getPosition().lng());
 //document.getElementById("div-path-data").innerHTML=trainStationMarkerB.keys.toString();
 }
 
-
 function ZoomStationA()
 {
-map.panTo(trainStationMarkerA.getPosition());
+map.panTo(TransitStationMarkerA.getPosition());
 window.setTimeout(function() {
   map.setZoom(16);
 }, 500);
@@ -389,22 +426,30 @@ window.setTimeout(function() {
 
 function ZoomStationB()
 {
-map.panTo(trainStationMarkerA.getPosition());
+map.panTo(TransitStationMarkerA.getPosition());
 
 window.setTimeout(function() {
   map.setZoom(9);
 }, 500);
 
 window.setTimeout(function() {
-  map.panTo(trainStationMarkerB.getPosition());
+  map.panTo(TransitStationMarkerB.getPosition());
 }, 1000);
 
 window.setTimeout(function() {
+<<<<<<< .mine
+  map.setZoom(16);
+}, 3000);
+=======
   map.setZoom(16);
 }, 1000);
+>>>>>>> .r48
 
 }
 
+<<<<<<< .mine
+function ZoomStationX()
+=======
 function ZoomStationX()
 {
 map.panTo(trainStationMarkerA.getPosition());
@@ -424,16 +469,39 @@ window.setTimeout(function() {
 }
 
 function StationMarkersNotifyPHP ()
+>>>>>>> .r48
+{
+map.panTo(TransitStationMarkerA.getPosition());
+
+window.setTimeout(function() {
+  map.setZoom(11);
+}, 500);
+
+window.setTimeout(function() {
+  map.panTo(TransitStationMarkerB.getPosition());
+}, 1000);
+
+window.setTimeout(function() {
+  map.setZoom(9);
+}, 2000);
+
+}
+
+function StationMarkersNotifyPHP (markerID)
 {
 //alert("StationMarkersNotifyPHP");
-$.ajax({
+alert("Map info request :"&markerID);
+
+/*$.ajax({
 method: "POST",
 url: "./controler/MapDataUpdate.php",
 data: { StationA: StationAID, StationB: StationBID }
 })
 .done(function( msg ) {
-  //alert("Map update");
-});
+  alert("Map update"&markerID);
+});*/
+
+
 }
 
 
@@ -443,16 +511,17 @@ function AddStationMarkers()
 var markerObject;
 var marker;
 var markerEvent;
-stationMarkers=[];
-for (var i=0; i<Stations.length; i++)
+var i=0;
+
+for (i=0; i<Stations.length; i++)
 {
     marker = new google.maps.Marker({
             position: Stations[i],
             title: StationsData[i][0].toString() + '#' + StationsData[i][1].toString(),
             map: map,
-            icon:trainStationIcon
+            icon:TransitStationIcon
         })
-    stationMarkers.push(marker);
+    StationMarkers.push(marker);
 
      //markerEvent=
     markerObject =
@@ -461,32 +530,33 @@ for (var i=0; i<Stations.length; i++)
     }
     stationMarkerObjects.push( markerObject );
 
-    google.maps.event.addListener(stationMarkers[i],
+    google.maps.event.addListener(StationMarkers[i],
            'click', function(i)
            {
                return function()
                {
                    //alert("AddListener:Marker:"+i);
                    SelectStationMarker(i);
-                   StationMarkersNotifyPHP();
+                   onClickInfo();
+                   //StationMarkersNotifyPHP(i);
                }
 
            }(i)
         );
 }
 
-trainStationMarkerA= new google.maps.Marker({
+TransitStationMarkerA= new google.maps.Marker({
 position: new google.maps.LatLng(46.00,13.00),
 title: '#StationA' ,
-icon:trainStationAIcon,
+icon:TransitStationAIcon,
 map: map
 });
 
 
-trainStationMarkerB= new google.maps.Marker({
+TransitStationMarkerB= new google.maps.Marker({
 position: new google.maps.LatLng(47.00,13.00),
 title: '#StationB' ,
-icon:trainStationBIcon,
+icon:TransitStationBIcon,
 map: map
 });
 
@@ -518,7 +588,7 @@ for (var i=0; i<Stations.length ; i++)
  GoogLatLng = Stations[i];
 
 SQLString=SQLString+
-"\n INSERT INTO `emisije`.`TrainStations` " +
+"\n INSERT INTO `emisije`.`TransitStations` " +
 "(`IDStation`, `Name`, `Lat`, `Lng`) " +
 " VALUES ('"+StationsData[i][0]+"','"+StationsData[i][1]+"', '"+GoogLatLng.lat() +"', '"+GoogLatLng.lng()+"'); \n" ;
 }
@@ -530,56 +600,71 @@ document.getElementById("div-path-data").innerHTML=SQLString;
 
 // This example adds an animated symbol to a polyline.
 
-var TrainPath=[];
+var TransitPath=[];
 
-function InitTrainPathData()
+function InitTransitPathData()
 {
-TrainPathCoordinates=[];
-for (railPath of railPolyLines )
+TransitPathCoordinates=[];
+var TransitPathIndex=-1;
+var i=-1;
+for (TransitPolyLines of BusPolyLines)
 {
-   i++;
+TransitPathIndex++;
 
-   TrainPathCoordinatesSingle=[];
-   for ( railCoord of railPath )
+for (var TransitPathSingle of TransitPolyLines )
+{
+   if(TransitPathIndex>0)
    {
-
-       TrainPathCoordinatesSingle.push(
-               new google.maps.LatLng(railCoord[0], railCoord[1]));
-       //alert(railCoord.length);
-       /*if (railCoord.length===4) // Pri prvem zapisu je v 3. in 4. stolpcu še zaporedna št. postaje
+     if(!($("input#checkbox-bus:checkbox:checked").val()=="Bus"))
+     {
+       break;
+     }
+   }
+   var TransitPathCoordinatesSingle=[];
+   for ( TransitPathCoord of TransitPathSingle )
+   {
+     if(TransitPathIndex==0)
+     {
+       if(!($("input#checkbox-train:checkbox:checked").val()=="Train")){break;}
+     }
+       TransitPathCoordinatesSingle.push(
+               new google.maps.LatLng(TransitPathCoord[0], TransitPathCoord[1]));
+       //alert(TransitPathCoord.length);
+       /*if (TransitPathCoord.length===4) // Pri prvem zapisu je v 3. in 4. stolpcu še zaporedna št. postaje
        {
-           StationA=FindMarkerByStationID(railCoord[2]);
-           StationB=FindMarkerByStationID(railCoord[3]);
+           StationA=FindMarkerByStationID(TransitPathCoord[2]);
+           StationB=FindMarkerByStationID(TransitPathCoord[3]);
            //alert(StationA+":"+StationB);
        }*/
    }
-   TrainPathCoordinates.push(TrainPathCoordinatesSingle);
+   TransitPathCoordinates.push(TransitPathCoordinatesSingle);
 //alert("Add new polyline:"+"i:"+ i +":" + StationA +" : "+StationB);
-var TrainSymbol = {
+var TransitSymbol = {
 path: google.maps.SymbolPath.CIRCLE,
 scale: 8,
-strokeColor: '#393'
+strokeColor: TransitPolyLinesColor[TransitPathIndex]
 };
 
-
-TrainPath.push(
+TransitPath.push(
         new google.maps.Polyline({
-path: TrainPathCoordinatesSingle,
+path: TransitPathCoordinatesSingle,
 icons: [{
-  icon: TrainSymbol,
+  icon: TransitSymbol,
   offset: '100%'
 }],
+strokeWeight: 0,
 map: map
 
 }));
 
 }
 }
+}
 
-function InitTrainPath()
+function InitTransitPath()
 {
-// var TrainPathCoordinates=[];
-InitTrainPathData();
+// var TransitPathCoordinates=[];
+InitTransitPathData();
 
 /*TrainPathCoordinates[0]= [
 new google.maps.LatLng(16.11, 15.191),
@@ -588,17 +673,17 @@ new google.maps.LatLng(50, 16)
 
 // Define the symbol, using one of the predefined paths ('CIRCLE')
 // supplied by the Google Maps JavaScript API.
-var TrainSymbol = {
+var TransitSymbol = {
 path: google.maps.SymbolPath.CIRCLE,
 scale: 8,
 strokeColor: '#393'
 };
 
 // Create the polyline and add the symbol to it via the 'icons' property.
-TrainPath[0] = new google.maps.Polyline({
-path: TrainPathCoordinates[0],
+TransitPath[0] = new google.maps.Polyline({
+path: TransitPathCoordinates[0],
 icons: [{
-  icon: TrainSymbol,
+  icon: TransitSymbol,
   offset: '100%'
 }],
 map: map
@@ -613,13 +698,13 @@ function animateCircle() {
 var count = 0;
 window.setInterval(function() {
 
-  for (TrainPathSingle of TrainPath)
+  for (var TransitPathSingle of TransitPath)
   {
     count = (count + 1) % 200;
 
-    var icons = TrainPathSingle.get('icons');
+    var icons = TransitPathSingle.get('icons');
     icons[0].offset = (count / 2) + '%';
-    TrainPathSingle.set('icons', icons);
+    TransitPathSingle.set('icons', icons);
   }
 }, 1000);
 }
@@ -627,33 +712,72 @@ window.setInterval(function() {
 
 function onClickInfo()
 {
-$( "#Div-Debug-Info" ).html("ABC--123-456-789-000");
+  var url="";
+  var NewStation=StationAID;
+  url='http://www.lpp.si/sites/default/files/lpp_vozniredi/iskalnik/index.php?stop='+NewStation;
 
-$.ajax({
-method: "POST",
-url: "./model/Train-Info.php",
-data: { Datum:"1.1.2015", StationA: trainStationMarkerASelectedID, StationB: trainStationMarkerBSelectedID }
-})
-.done(function( msg ) {
-  $( "#Div-Debug-Data" ).html(msg);
-});
+//alert(url);
+
+StationAID=StationsData[TransitStationMarkerASelectedID][0];
+StationBID=StationsData[TransitStationMarkerBSelectedID][0];
+$('#div-path-data').append('<br/>-----( Url )---------><br/><a target="_blank" href="'+url+'">'+url+'</a>');
+$('#div-path-data').append('<br/>-----( StationA :) )--------->'+StationAID);
+$('#div-path-data').append('<br/>-----( StationB :) )--------->'+StationBID);
+
+//alert(url);
+
+$('#iframe-toolbar-left').attr('src', url);
+return NewStation;
+//$('iframeId').contents().get(0).location.href
 }
 
 //google.maps.event.addDomListener(window, 'load', initialize);
 function StartMacro(RepeatX)
 {
 
-Station=Math.ceil(Math.random()*131);
-SelectStationMarker(Station);
-Station=Math.ceil(Math.random()*111);
-SelectStationMarker(Station);
+  Station=Math.ceil(Math.random()*StationMarkers.length);
+  SelectStationMarker(Station);
 
-onClickInfo();
+  Station=Math.ceil(Math.random()*StationMarkers.length);
+  SelectStationMarker(Station);
 
+<<<<<<< .mine
+  var NewStation=onClickInfo();
+=======
 setTimeout(ZoomStationA(),1000);
 setTimeout(ZoomStationB(),6000);
 setTimeout(ZoomStationX(),9000);
+>>>>>>> .r48
 
+<<<<<<< .mine
+  $('#div-path-data').append('<br/>-----( NewStation :) )--------->'+NewStation);
+  $('#div-path-data').append('<br/>-----( ZoomA :) )--------->'+StationAID);
+  $('#div-path-data').append('<br/>-----( ZoomB :) )--------->'+StationBID);
+  //$('#div-path-data').append('<br/>-----( ZoomX :) )--------->'+(NewStation === StationAID));
+  //$('#div-path-data').append('<br/>-----( ZoomY :) )--------->'+(NewStation === StationBID));
+
+  //$('#div-path-data').append('<br/>-----( A:'+StationsData[TransitStationMarkerASelectedID][0]+' B:'+StationsData[TransitStationMarkerBSelectedID][0]+')');
+
+  if (NewStation === StationAID)
+  {
+    //$('#div-path-data').append('<br/>-----( ZoomA :) )--------->'+StationBID);
+    setTimeout(ZoomStationA(),500);
+  }
+  else if (NewStation === StationBID)
+  {
+    //$('#div-path-data').append('<br/>-----( ZoomB :) )--------->'+StationBID);
+    setTimeout(ZoomStationB(),500);
+  }
+  else
+  {
+    //$('#div-path-data').append('-----( ZoomX :) )---------><br/>'+NewStation);
+    setTimeout(ZoomStationX(),500);
+  }
+
+  if ( RepeatX>0 ) {setTimeout(StartMacro(RepeatX-1),1000);}
+
+=======
 if ( RepeatX>0 ) {setTimeout(StartMacro(RepeatX-1),11000);}
 
+>>>>>>> .r48
 }

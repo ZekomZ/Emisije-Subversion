@@ -456,8 +456,8 @@ h1.title {
 }
 
 .wrapper {
-  width: 675px;
-  margin: 0 auto;
+  width: 55%;
+  margin: 1800px 22% 0px auto;
 }
 
 #container {
@@ -473,9 +473,9 @@ p.tagline {
 }
 
 #main {
-  margin-top: 20px;
+  margin-top: 111px;
   padding: 0 20px 90px;
-  background-color: #fff;
+  background-color: #abb5b3;
 }
 
 .download-bar {

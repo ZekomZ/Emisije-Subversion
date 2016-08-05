@@ -437,19 +437,11 @@ window.setTimeout(function() {
 }, 1000);
 
 window.setTimeout(function() {
-<<<<<<< .mine
-  map.setZoom(16);
-}, 3000);
-=======
   map.setZoom(16);
 }, 1000);
->>>>>>> .r48
 
 }
 
-<<<<<<< .mine
-function ZoomStationX()
-=======
 function ZoomStationX()
 {
 map.panTo(trainStationMarkerA.getPosition());
@@ -460,25 +452,6 @@ window.setTimeout(function() {
 
 window.setTimeout(function() {
   map.panTo(trainStationMarkerB.getPosition());
-}, 1000);
-
-window.setTimeout(function() {
-  map.setZoom(9);
-}, 2000);
-
-}
-
-function StationMarkersNotifyPHP ()
->>>>>>> .r48
-{
-map.panTo(TransitStationMarkerA.getPosition());
-
-window.setTimeout(function() {
-  map.setZoom(11);
-}, 500);
-
-window.setTimeout(function() {
-  map.panTo(TransitStationMarkerB.getPosition());
 }, 1000);
 
 window.setTimeout(function() {
@@ -500,7 +473,6 @@ data: { StationA: StationAID, StationB: StationBID }
 .done(function( msg ) {
   alert("Map update"&markerID);
 });*/
-
 
 }
 
@@ -741,15 +713,9 @@ function StartMacro(RepeatX)
   Station=Math.ceil(Math.random()*StationMarkers.length);
   SelectStationMarker(Station);
 
-<<<<<<< .mine
-  var NewStation=onClickInfo();
-=======
-setTimeout(ZoomStationA(),1000);
-setTimeout(ZoomStationB(),6000);
-setTimeout(ZoomStationX(),9000);
->>>>>>> .r48
 
-<<<<<<< .mine
+  var NewStation=onClickInfo();
+
   $('#div-path-data').append('<br/>-----( NewStation :) )--------->'+NewStation);
   $('#div-path-data').append('<br/>-----( ZoomA :) )--------->'+StationAID);
   $('#div-path-data').append('<br/>-----( ZoomB :) )--------->'+StationBID);
@@ -776,8 +742,4 @@ setTimeout(ZoomStationX(),9000);
 
   if ( RepeatX>0 ) {setTimeout(StartMacro(RepeatX-1),1000);}
 
-=======
-if ( RepeatX>0 ) {setTimeout(StartMacro(RepeatX-1),11000);}
-
->>>>>>> .r48
 }

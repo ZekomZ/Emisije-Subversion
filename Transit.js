@@ -637,7 +637,6 @@ function InitTransitPath()
 {
 // var TransitPathCoordinates=[];
 InitTransitPathData();
-
 /*TrainPathCoordinates[0]= [
 new google.maps.LatLng(16.11, 15.191),
 new google.maps.LatLng(50, 16)
@@ -686,19 +685,33 @@ function onClickInfo()
 {
   var url="";
   var NewStation=StationAID;
-  url='http://www.lpp.si/sites/default/files/lpp_vozniredi/iskalnik/index.php?stop='+NewStation;
+
 
 //alert(url);
 
 StationAID=StationsData[TransitStationMarkerASelectedID][0];
 StationBID=StationsData[TransitStationMarkerBSelectedID][0];
+
 $('#div-path-data').append('<br/>-----( Url )---------><br/><a target="_blank" href="'+url+'">'+url+'</a>');
 $('#div-path-data').append('<br/>-----( StationA :) )--------->'+StationAID);
 $('#div-path-data').append('<br/>-----( StationB :) )--------->'+StationBID);
 
 //alert(url);
+url='http://www.lpp.si/sites/default/files/lpp_vozniredi/iskalnik/index.php?stop='+StationAID;
+$('#div-toolbar-footer-left').html('<h1>'+StationsData[TransitStationMarkerASelectedID][1]+'</h1>');
+$('#div-toolbar-footer-left').append('<h2>( '+StationsData[TransitStationMarkerASelectedID][0]+' )</h2>');
+$('#div-toolbar-footer-left').append('<h3> Vozni red :</h3>');
+$('#div-toolbar-footer-left').append('<h2><a target="_blank" href="'+url+'">'+url+'</a></h2>');
 
-$('#iframe-toolbar-left').attr('src', url);
+
+
+  url='http://www.lpp.si/sites/default/files/lpp_vozniredi/iskalnik/index.php?stop='+StationBID;
+  $('#div-toolbar-footer-right').html('<h1>'+StationsData[TransitStationMarkerBSelectedID][1]+'</h1>');
+  $('#div-toolbar-footer-right').append('<h2>( '+StationsData[TransitStationMarkerBSelectedID][0]+' )</h2>');
+  $('#div-toolbar-footer-right').append('<h3> Vozni red :</h3>');
+  $('#div-toolbar-footer-right').append('<h2><a target="_blank" href="'+url+'">'+url+'</a></h2>');
+
+
 return NewStation;
 //$('iframeId').contents().get(0).location.href
 }
@@ -716,15 +729,12 @@ function StartMacro(RepeatX)
 
   var NewStation=onClickInfo();
 
-  $('#div-path-data').append('<br/>-----( NewStation :) )--------->'+NewStation);
-  $('#div-path-data').append('<br/>-----( ZoomA :) )--------->'+StationAID);
-  $('#div-path-data').append('<br/>-----( ZoomB :) )--------->'+StationBID);
   //$('#div-path-data').append('<br/>-----( ZoomX :) )--------->'+(NewStation === StationAID));
   //$('#div-path-data').append('<br/>-----( ZoomY :) )--------->'+(NewStation === StationBID));
 
   //$('#div-path-data').append('<br/>-----( A:'+StationsData[TransitStationMarkerASelectedID][0]+' B:'+StationsData[TransitStationMarkerBSelectedID][0]+')');
-
-  if (NewStation === StationAID)
+  setTimeout(ZoomStationA(),500);
+  /*if (NewStation === StationAID)
   {
     //$('#div-path-data').append('<br/>-----( ZoomA :) )--------->'+StationBID);
     setTimeout(ZoomStationA(),500);
@@ -739,7 +749,7 @@ function StartMacro(RepeatX)
     //$('#div-path-data').append('-----( ZoomX :) )---------><br/>'+NewStation);
     setTimeout(ZoomStationX(),500);
   }
-
+*/
   if ( RepeatX>0 ) {setTimeout(StartMacro(RepeatX-1),1000);}
 
 }

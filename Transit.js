@@ -444,20 +444,10 @@ window.setTimeout(function() {
 
 function ZoomStationX()
 {
-map.panTo(trainStationMarkerA.getPosition());
-
-window.setTimeout(function() {
-  map.setZoom(11);
-}, 500);
-
-window.setTimeout(function() {
-  map.panTo(trainStationMarkerB.getPosition());
-}, 1000);
-
+map.panTo(new google.maps.LatLng(46.0587, 14.5127));
 window.setTimeout(function() {
   map.setZoom(9);
 }, 2000);
-
 }
 
 function StationMarkersNotifyPHP (markerID)

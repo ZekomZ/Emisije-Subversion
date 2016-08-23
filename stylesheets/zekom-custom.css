@@ -10,15 +10,15 @@ iframe
 .div-main-frame-transit
 {
   clear:both;
-  width:1600px;
-  height:1111px;
+  width:6400px;
+  height:3333px;
   float:left;
 }
 
 iframe.iframe-transit-map
 {
   width:96%;
-  height:1215px;
+  height:3333px;
   float: left;
   margin-left: 1%;
   clear:both;

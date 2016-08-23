@@ -11,14 +11,14 @@ iframe
 {
   clear:both;
   width:6400px;
-  height:3333px;
+  height:1333px;
   float:right;
 }
 
 iframe.iframe-transit-map
 {
   width:96%;
-  height:3333px;
+  height:1111px;
   float: left;
   margin-left: 1%;
   clear:both;

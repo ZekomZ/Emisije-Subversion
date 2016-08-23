@@ -10,7 +10,7 @@ iframe
 .div-main-frame-transit
 {
   clear:both;
-  width:6400px;
+  width:101%;
   height:1333px;
   margin-right:1%;
   float:right;
@@ -18,7 +18,7 @@ iframe
 
 iframe.iframe-transit-map
 {
-  width:96%;
+  width:88%;
   height:1111px;
   float: left;
   margin-left: 1%;

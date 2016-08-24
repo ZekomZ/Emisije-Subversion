@@ -682,7 +682,7 @@ function onClickInfo()
 StationAID=StationsData[TransitStationMarkerASelectedID][0];
 StationBID=StationsData[TransitStationMarkerBSelectedID][0];
 
-$('#div-path-data').append('<br/>-----( Url )---------><br/><a target="_blank" href="'+url+'">'+url+'</a>');
+//$('#div-path-data').append('<br/>-----( Url )---------><br/><a target="_blank" href="'+url+'">'+url+'</a>');
 $('#div-path-data').append('<br/>-----( StationA :) )--------->'+StationAID);
 $('#div-path-data').append('<br/>-----( StationB :) )--------->'+StationBID);
 

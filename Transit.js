@@ -710,9 +710,9 @@ return NewStation;
 function StartMacro(ZoomX)
 {
 
-  var iframeWidth=1111*ZoomX;
+  var iframeWidth=""+(1111*ZoomX);
   
-  $("iframe.iframe-transit-map").width(iframeWidth);
+  $("iframe.iframe-transit-map").attr("width", iframeWidth);
 
   Station=Math.ceil(Math.random()*StationMarkers.length);
   SelectStationMarker(Station);

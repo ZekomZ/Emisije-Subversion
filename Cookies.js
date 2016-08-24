@@ -47,7 +47,7 @@ function checkCookie() {
 function setFormatX(ZoomX)
 {
     iframeWidth=""+(ZoomX*1111);
-    document.getElementById("transit-map").width = iframeWidth;
+     $("#transit-map").css("width", iframeWidth);
 }
 
 $(document).ready(function(){

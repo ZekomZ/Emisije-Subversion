@@ -44,7 +44,7 @@ function checkCookie() {
     }
 }
 
-function setFormatX(ZoomX)
+function SetFormatX(ZoomX)
 {
     iframeWidth=""+(ZoomX*1111);
      $("#transit-map").css("width", iframeWidth);

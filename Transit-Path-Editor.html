@@ -22,6 +22,8 @@
             <hr/>
             <div id="div-control-buttons">
               <input type="button" onmouseover="ButtonHelpInfo(7)" onclick="StartMacro(0)" value="Start()"/>
+              <input type="button" onmouseover="ButtonHelpInfo(8)" onclick="StartMacro(0)" value="Format (X*1)"/>
+              <input type="button" onmouseover="ButtonHelpInfo(9)" onclick="StartMacro(0)" value="Format (X*2)"/>
             </div>
             
             <div id="div-path-data">
@@ -50,19 +52,13 @@
   </div>
 
   <div class="div-toolbar-header-right">
-        <div id="div-control-buttons">
+        
             <form action="">
               <input id="checkbox-train" type="checkbox" onclick="ResetStations()" name="vehicle" value="Train" checked>Slovenske železnice
               <input id="checkbox-bus" type="checkbox" onclick="ResetStations()" name="vehicle" value="Bus" checked>LPP - Ljubljanski potniški promet<br>
               <input id="checkbox-gama" type="checkbox" onclick="ResetStations()" name="vehicle" value="Gama">NEK - Gama karte
             </form>
-        </div>
         
-        <div id="div-control-buttons">
-         <input type="button" onmouseover="ButtonHelpInfo(1)" onclick="ResetStations()" value="Reset Map"/>
-         <input type="button" onmouseover="ButtonHelpInfo(2)" onclick="ResetMarkers()" value="Reset Markers"/>
-         <input type="button" onmouseover="ButtonHelpInfo(3)" onclick="DeleteLastMarker()" value="Delete ( last ) marker"/>
-       </div>
   </div>
   </div>
 

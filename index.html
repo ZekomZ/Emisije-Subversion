@@ -12,7 +12,8 @@
 
   <script type="text/javascript" src="jquery-3.1.0.min.js"></script>
   <script type="text/javascript" src="Cookies.js"></script>
-
+  <script type="text/javascript" src="Transit.js"></script>
+  
   <title>Emisije-subversion</title>
 
   <meta name="description" content="Transit Maps Api - Emisije v okolju ( CO2, hrupne karte, elektro-magnetna sevanja, nevarni in škodljivi delci, radioaktivnost v okolju in ionizirajoča sevanja, ... )">
@@ -23,6 +24,16 @@
 <div id="div-cookies">This site uses cookies. Click OK to continue.
   <div id="div-cookies-ok"> <a>OK</a> </div>
 </div>
+
+<div id="div-control-buttons">
+         <input type="button" onmouseover="ButtonHelpInfo(1)" onclick="setFormatX(1)" value="Reset Map"/>
+         <input type="button" onmouseover="ButtonHelpInfo(2)" onclick="setFormatX(1)" value="Reset Markers"/>
+         <input type="button" onmouseover="ButtonHelpInfo(3)" onclick="setFormatX(1)" value="Delete ( last ) marker"/>
+</div>
+
+<div id="div-path-data"></div>
+
+
 <div class="div-main-frame-transit">
 	<h1><a href="http://zekomz.github.io/Emisije-Subversion/" target="_blank">http://zekomz.github.io/Emisije-Subversion/</a></h1>
 	<iframe id="transit-map" class="iframe-transit-map"  src="Transit-Path-Editor.html"></iframe>

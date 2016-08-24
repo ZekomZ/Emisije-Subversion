@@ -46,7 +46,7 @@ function checkCookie() {
 
 function SetFormatX(ZoomX)
 {
-    iframeWidth=""+(ZoomX*55+96)+"%";
+    iframeWidth=""+((ZoomX-1)*55+96)+"%";
      $("#transit-map").css("width", iframeWidth);
 }
 

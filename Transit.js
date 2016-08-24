@@ -707,8 +707,12 @@ return NewStation;
 }
 
 //google.maps.event.addDomListener(window, 'load', initialize);
-function StartMacro(RepeatX)
+function StartMacro(ZoomX)
 {
+
+  var iframeWidth=111*ZoomX;
+  
+  $("iframe.iframe-transit-map").css("width",iframeWidth+"%");
 
   Station=Math.ceil(Math.random()*StationMarkers.length);
   SelectStationMarker(Station);
@@ -740,6 +744,6 @@ function StartMacro(RepeatX)
     setTimeout(ZoomStationX(),500);
   }
 */
-  if ( RepeatX>0 ) {setTimeout(StartMacro(RepeatX-1),1000);}
+  //if ( RepeatX>0 ) {setTimeout(StartMacro(RepeatX-1),1000);}
 
 }

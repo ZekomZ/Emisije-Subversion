@@ -16,9 +16,13 @@ iframe
   float:right;
 }
 
+#transit-map
+{
+  width:99%; 
+}
+
 iframe.iframe-transit-map
 {
-  width:99%;
   height:1355px;
   float: left;
   margin-left: 1%;

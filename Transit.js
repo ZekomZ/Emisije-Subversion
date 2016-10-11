@@ -28,6 +28,9 @@ StationInfoWindowB = new google.maps.InfoWindow({
 
 var polyOptions = {};
 
+var trafficLayer = new google.maps.TrafficLayer();
+trafficLayer.setMap(map);
+
 var TransitStationIcon = {
 path: 'M 0,0 -10,-3 -6,-10 0,-10 6,-10 10,-3 z',
 fillColor: 'blue',
@@ -198,12 +201,13 @@ center: new google.maps.LatLng(46.0587, 14.5127)
 };
 
   map = new google.maps.Map(document.getElementById('div-map-canvas'), mapOptions);
-
+  trafficLayer.setMap(null);
+  
 ResetMarkers();
 AddStationMarkers();
 InitTransitPath();
 if ($("input#checkbox-gama:checkbox:checked").val()=="Gama"){LoadGamaInfo();}
-if ($("input#checkbox-traffic:checkbox:checked").val()=="Gama"){LoadTrafficInfo();}
+if ($("input#checkbox-traffic:checkbox:checked").val()=="Traffic"){LoadTrafficInfo();}
   
 // Add a listener for the click event
 google.maps.event.addListener(map, 'click', addLatLng);
@@ -238,6 +242,12 @@ if (typeof poly != 'undefined'){ poly.setMap(null); }
 poly = new google.maps.Polyline(polyOptions);
 poly.setMap(map);
 
+}
+
+function LoadTrafficInfo()
+{
+  trafficLayer = new google.maps.TrafficLayer();
+  trafficLayer.setMap(map);  
 }
 
 function addSQLStationRail()

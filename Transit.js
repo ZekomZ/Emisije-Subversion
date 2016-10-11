@@ -203,7 +203,8 @@ ResetMarkers();
 AddStationMarkers();
 InitTransitPath();
 if ($("input#checkbox-gama:checkbox:checked").val()=="Gama"){LoadGamaInfo();}
-
+if ($("input#checkbox-traffic:checkbox:checked").val()=="Gama"){LoadTrafficInfo();}
+  
 // Add a listener for the click event
 google.maps.event.addListener(map, 'click', addLatLng);
 google.maps.event.addListener(TransitStationMarkerA, "mouseover", DisplayStationInfo(1,StationInfoWindowA));

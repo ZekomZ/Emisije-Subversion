@@ -18,12 +18,12 @@ iframe
 
 #transit-map
 {
-  width:96%; 
+  width:96%;
 }
 
 iframe.iframe-transit-map
 {
-  height:1355px;
+  height:2525px;
   float: left;
   margin-left: 1%;
   clear:both;

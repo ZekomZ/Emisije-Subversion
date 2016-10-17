@@ -202,13 +202,16 @@ center: new google.maps.LatLng(46.0587, 14.5127)
 
   map = new google.maps.Map(document.getElementById('div-map-canvas'), mapOptions);
   trafficLayer.setMap(null);
-  
+
 ResetMarkers();
 AddStationMarkers();
 InitTransitPath();
+UpdateStreetViewLocation(WeatherStationData[0][1],WeatherStationData[0][2]);
+if ($("input#checkbox-weather:checkbox:checked").val()=="Weather"){AddWeatherStationMarkers();}
 if ($("input#checkbox-gama:checkbox:checked").val()=="Gama"){LoadGamaInfo();}
 if ($("input#checkbox-traffic:checkbox:checked").val()=="Traffic"){LoadTrafficInfo();}
-  
+
+
 // Add a listener for the click event
 google.maps.event.addListener(map, 'click', addLatLng);
 google.maps.event.addListener(TransitStationMarkerA, "mouseover", DisplayStationInfo(1,StationInfoWindowA));
@@ -247,7 +250,7 @@ poly.setMap(map);
 function LoadTrafficInfo()
 {
   trafficLayer = new google.maps.TrafficLayer();
-  trafficLayer.setMap(map);  
+  trafficLayer.setMap(map);
 }
 
 function addSQLStationRail()
@@ -283,9 +286,11 @@ position: event.latLng,
 title: '#' + path.getLength(),
 map: map
 });
-
+//alert('Add marker :'+marker.getPosition().lat()+':'+marker.getPosition().lng());
+UpdateStreetViewLocation(marker.getPosition().lat(),marker.getPosition().lng());
 markers.push(marker);
 ResetPolyLine();
+
 //INSERT INTO `test`.`Train-Rails-Location`
 //(`IDRailAB`, `IDStationA`, `IDStationB`, `Type`)
 //VALUES ('99999-111111', '99999', '111111', '0');
@@ -294,7 +299,7 @@ ResetPolyLine();
 // (`IDRailABLatLng`, `IDRailAB`, `RailIndex`, `Lat`, `Lng`)
 // VALUES ('99999', '11111', '1', '123123', '2312312');
 
-addSQLStationRail();
+/*addSQLStationRail();
 
 for (var i=0;i<markers.length;i++)
 {
@@ -308,7 +313,7 @@ for (var i=0;i<markers.length;i++)
   "<br/>"+"#"+i+":"+markers[i]["position"].toString()+"/"+markers[i]["title"].toString();
 }
 
-ResetPolyLine();
+ResetPolyLine();*/
 }
 
 function ResetMarkers()
@@ -406,7 +411,7 @@ TransitStationMarkerA.setPosition(
 );
 
 TransitStationMarkerASelectedID=markerID;
-
+UpdateStreetViewLocation(StationMarkers[markerID].getPosition().lat(),StationMarkers[markerID].getPosition().lng());
 //alert("RailSelectA:"+stationMarkers[markerID].getPosition().lat()+":"+stationMarkers[markerID].getPosition().lng());
 
 //document.getElementById("div-path-data").innerHTML=TransitStationMarkerA.keys.toString();
@@ -421,7 +426,7 @@ function RailSelectB(markerID)
 );
 
 TransitStationMarkerBSelectedID=markerID;
-
+UpdateStreetViewLocation(StationMarkers[markerID].getPosition().lat(),StationMarkers[markerID].getPosition().lng());
 //alert("RailSelectB:"+stationMarkers[markerID].getPosition().lat()+":"+stationMarkers[markerID].getPosition().lng());
 //document.getElementById("div-path-data").innerHTML=trainStationMarkerB.keys.toString();
 }
@@ -464,7 +469,7 @@ window.setTimeout(function() {
 function StationMarkersNotifyPHP (markerID)
 {
 //alert("StationMarkersNotifyPHP");
-alert("Map info request :"&markerID);
+//alert("Map info request :"&markerID);
 
 /*$.ajax({
 method: "POST",
@@ -738,20 +743,162 @@ function StartMacro(ZoomX)
   {
     //$('#div-path-data').append('<br/>-----( ZoomA :) )--------->'+StationBID);
     setTimeout(ZoomStationA(),500);
-  }
-  else if (NewStation === StationBID)
-  {
-    //$('#div-path-data').append('<br/>-----( ZoomB :) )--------->'+StationBID);
-    setTimeout(ZoomStationB(),500);
-  }
-  else
-  {
-    //$('#div-path-data').append('-----( ZoomX :) )---------><br/>'+NewStation);
-    setTimeout(ZoomStationX(),500);
-  }
-*/
-  //if ( RepeatX>0 ) {setTimeout(StartMacro(RepeatX-1),1000);}
+  }*/
 
 }
 
 
+// *******************************************************************************
+// Aplikacija Vreme - Podatki samodejnih postaj
+//------------------------------------------------------------------------------
+/*var WeatherStationIcon = {
+path: 'M -1,-1 -7,11 -11,13 -7,17 -3,21 3,21 7,17 13,11 7,13 8,11 9,-1 -3,-3 -1,1 z',
+icon : '../img/kavanapoti.gif',
+fillColor: 'red',
+fillOpacity: 0.8,
+scale: 1,
+strokeColor: 'blue',
+strokeWeight: 3
+};
+*/
+
+WeatherStationIcon = {
+url: './images/Helianthus_annuus_sunflower-Resized-4x.jpg',
+// This marker is 20 pixels wide by 32 pixels high.
+size: new google.maps.Size(111, 77),
+// The origin for this image is (0, 0).
+origin: new google.maps.Point(0, 0),
+// The anchor for this image is the base of the flagpole at (0, 32).
+anchor: new google.maps.Point(55, 33)
+};
+
+WeatherStationBaseIconX = {
+url: './images/girl-in-sunflower-dress-and-sunflower-field-resized-4x.jpg',
+// This marker is 20 pixels wide by 32 pixels high.
+size: new google.maps.Size(333, 222),
+// The origin for this image is (0, 0).
+origin: new google.maps.Point(0, 0),
+// The anchor for this image is the base of the flagpole at (0, 32).
+anchor: new google.maps.Point(-33, -55)
+};
+
+WeatherClubCardIcon = {
+url: './images/Helianthus_annuus_sunflower-Resized-2x.jpg',
+// This marker is 20 pixels wide by 32 pixels high.
+size: new google.maps.Size(250, 222),
+// The origin for this image is (0, 0).
+origin: new google.maps.Point(0, 0),
+// The anchor for this image is the base of the flagpole at (0, 32).
+anchor: new google.maps.Point(125, 55)
+};
+
+var WeatherStationIconSelectedX = {
+path: 'M -1,-1 -3,7 -5,11 -7,17 -9,21 -3,17 -5,25 5,25 3,17 9,21 7,17 5,11 3,7 -1,-1 z',
+fillColor: 'green',
+fillOpacity: 0.7,
+scale: 1,
+strokeColor: 'red',
+strokeWeight: 3
+};
+
+WeatherStationMarkers=new Array();
+var WeatherStationMarkerX=null;
+
+function AddWeatherStationMarkers()
+{
+
+var markerObject;
+var marker;
+var markerEvent;
+var i=1;
+
+if (WeatherStationMarkers.length>0)
+{
+  //return;
+}
+
+for (i=0; i<WeatherStationData.length; i++)
+{
+
+    if (i==45){
+      WeatherStationMarkers[i] = new google.maps.Marker({
+              position: new google.maps.LatLng(WeatherStationData[i][1],WeatherStationData[i][2]),
+              title: WeatherStationData[i][0] + '#Arso - Samodejna vremenska postaja' ,
+              map: map,
+              icon:WeatherClubCardIcon
+          });
+    }
+    else if (i==0){
+      WeatherStationMarkers[i] = new google.maps.Marker({
+              position: new google.maps.LatLng(WeatherStationData[i][1],WeatherStationData[i][2]),
+              title: WeatherStationData[i][0] + ' # Arso - Samodejna vremenska postaja' ,
+              map: map,
+              icon:WeatherStationBaseIconX
+          });
+    }
+    else {
+      WeatherStationMarkers[i] = new google.maps.Marker({
+              position: new google.maps.LatLng(WeatherStationData[i][1],WeatherStationData[i][2]),
+              title: WeatherStationData[i][0] + '# Lokacija samodejne vremenske postaje ARSO' ,
+              map: map,
+              icon:WeatherStationIcon
+          });
+    }
+
+    google.maps.event.addListener(WeatherStationMarkers[i],
+           'click', function(i)
+           {
+               return function()
+               {
+                   //alert("AddListener:Marker:"+i);
+                   SelectWeatherStationMarker(i);
+                   OnClickInfoWeatherStation(i);
+                   //StationMarkersNotifyPHP(i);
+               }
+
+           }(i)
+        );
+}
+/*
+WeatherStationMarkerselected= new google.maps.Marker({
+position: new google.maps.LatLng(46.062500, 14.543833),
+title: '#Gas station near you',
+icon:WeatherStationIconSelectedX,
+map: map
+});*/
+
+WeatherStationMarkerX=new google.maps.Marker({
+position: new google.maps.LatLng(46.062500, 14.543833),
+title: '#ARSO - Podatki samodejnih postaj' ,
+icon:WeatherStationIconSelectedX,
+map: map
+});
+
+}
+
+function SelectWeatherStationMarker(MarkerID)
+{
+  //alert("WeatherStationSelected ID:"+MarkerID);
+}
+
+function OnClickInfoWeatherStation(MarkerID)
+{
+  //alert("GasStationSelected OnClickInfo ID:"+MarkerID+":Data-->"+WeatherStationData[MarkerID][0]+"(:"+WeatherStationData[MarkerID][1]+" , "+WeatherStationData[MarkerID][2]+":)===>"+DestinationUrl);
+  UpdateStreetViewLocation(WeatherStationData[MarkerID][1],WeatherStationData[MarkerID][2]);
+}
+
+function UpdateStreetViewLocation(LocationLat, LocationLng)
+{
+  // https://en.wikipedia.org/wiki/Inverse_trigonometric_functions
+  var LocationOriginLat=16.474-LocationLat;
+  var LocationOriginLng=13.565-LocationLng;
+
+  var LocationDate=new Date();
+  var LocationTime=LocationDate.getHours();
+
+  var LocationHeading=(Math.cos((LocationTime)/24*360)*90+45)%360;
+  var LocationPitch=(Math.cos((LocationTime)/24)*10-5)%360;
+  var DestinationUrl='https://maps.googleapis.com/maps/api/streetview?size=600x300&location='+LocationLat+','+LocationLng+'&heading='+LocationHeading+'8&pitch='+LocationPitch+'&key=AIzaSyD3ftXQcNKQgHXgNbZ7bud7S0N_TUFyubQ';
+  //alert('Pitch:-->'+LocationPitch+':Heading -->'+LocationHeading);
+  document.getElementById("img-zekom-street-view").src=DestinationUrl;
+}

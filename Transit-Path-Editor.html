@@ -11,6 +11,7 @@
     <script type="text/javascript" src="Transit.js"></script>
     <script type="text/javascript" src="Bus-Editor.js"></script>
     <script type="text/javascript" src="Gama-Editor.js"></script>
+    <script type="text/javascript" src="Weather-Editor.js"></script>
 
   </head>
   <body>
@@ -18,17 +19,17 @@
     <div class="div-toolbar-header">
       <div class="div-toolbar-header-frame">
         <div id="div-control-box">
-            
+
             <div id="div-control-buttons">
               <input type="button" onmouseover="ButtonHelpInfo(7)" onclick="StartMacro(1)" value="Start()"/>
             </div>
-            
+
             <div id="div-path-data"></div>
-            
+
           </div>
-          
+
        </div>
-       
+
        <div class="div-toolbar-header-frame">
       <div id="div-control-buttons">
          <input type="button" onmouseover="ButtonHelpInfo(1)" onclick="ResetStations()" value="Reset Map"/>
@@ -42,22 +43,25 @@
         <input type="button" onmouseover="ButtonHelpInfo(6)" onclick="ZoomStationB()" value="ZoomB"/>
      </div>
     </div>
-       
-       
+
   </div>
 
     <div class="div-toolbar-header-right">
       <h1> Emisije Co2 v okolje </h1>
       <hr/>
             <form action="">
-              <input id="checkbox-train" type="checkbox" onclick="ResetStations()" name="vehicle" value="Train" checked>Slovenske železnice<br/>
-              <input id="checkbox-bus" type="checkbox" onclick="ResetStations()" name="vehicle" value="Bus" checked>LPP - Ljubljanski potniški promet<br/>
-              <input id="checkbox-traffic" type="checkbox" onclick="ResetStations()" name="vehicle" value="Traffic" checked>Google Traffic 
-              <input id="checkbox-gama" type="checkbox" onclick="ResetStations()" name="vehicle" value="Gama">NEK - Gama karte<br/>
-              
+              <div id="div-control-buttons">
+                <input id="checkbox-train" type="checkbox" onclick="ResetStations()" name="vehicle" value="Train" checked>Slovenske železnice
+                <input id="checkbox-bus" type="checkbox" onclick="ResetStations()" name="vehicle" value="Bus" checked>LPP - Ljubljanski potniški promet<br/>
+              </div>
+              <div id="div-control-buttons">
+                <input id="checkbox-traffic" type="checkbox" onclick="ResetStations()" name="vehicle" value="Traffic" checked>Google Traffic
+                <input id="checkbox-weather" type="checkbox" onclick="ResetStations()" name="vehicle" value="Weather">ARSO - Vreme ( Beta )
+                <input id="checkbox-gama" type="checkbox" onclick="ResetStations()" name="vehicle" value="Gama">NEK - Gama karte<br/>
+              </div>
             </form>
     </div>
-    
+
   </div>
 
   <div id="div-map-canvas"></div>
@@ -72,6 +76,7 @@
         </div>
   </div>
 
+
       <div class="div-toolbar-footer-breadcrumbs">
         <h1></h1><a target="_blank" href="http://bus.lpp.si/">bus.lpp.si</a></h1>
         <br/>
@@ -81,6 +86,8 @@
         <br>Zekom Tribute Magazine - Community Page about All your base are belong to us
         <br>·<a target="_blank" href="http://en.wikipedia.org/wiki/All_your_base_are_belong_to_us"> http://en.wikipedia.org/wiki/All_your_base_are_belong_to_us· </a>
       </div>
-      
+
+      <img id="img-zekom-street-view" src="./images/girl-in-sunflower-dress-and-sunflower-field.jpg" width="100%" height="999"></img>
+
   </body>
 </html>

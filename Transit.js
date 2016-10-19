@@ -900,5 +900,7 @@ function UpdateStreetViewLocation(LocationLat, LocationLng)
   var LocationPitch=(Math.cos((LocationTime)/24)*10-5)%360;
   var DestinationUrl='https://maps.googleapis.com/maps/api/streetview?size=600x300&location='+LocationLat+','+LocationLng+'&heading='+LocationHeading+'8&pitch='+LocationPitch+'&key=AIzaSyD3ftXQcNKQgHXgNbZ7bud7S0N_TUFyubQ';
   //alert('Pitch:-->'+LocationPitch+':Heading -->'+LocationHeading);
-  document.getElementById("img-zekom-street-view").src=DestinationUrl;
+  //document.getElementById("img-zekom-street-view").src=DestinationUrl;
+  document.body.style.background = "url('"+DestinationUrl+"') no-repeat top right";
+  document.body.style.backgroundPosition = "250px 50px";
 }

@@ -902,5 +902,5 @@ function UpdateStreetViewLocation(LocationLat, LocationLng)
   //alert('Pitch:-->'+LocationPitch+':Heading -->'+LocationHeading);
   document.getElementById("img-zekom-street-view").src=DestinationUrl;
   document.body.style.background = "url('"+DestinationUrl+"') no-repeat top right";
-  document.body.style.backgroundPosition = "250px 50px";
+  document.body.style.backgroundPosition = "50px 50px";
 }

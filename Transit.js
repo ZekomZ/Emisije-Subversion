@@ -732,7 +732,7 @@ function StartMacro(ZoomX)
   SelectStationMarker(Station);
 
 
-  var NewStation=onClickInfo();
+  //var NewStation=onClickInfo();
 
   //$('#div-path-data').append('<br/>-----( ZoomX :) )--------->'+(NewStation === StationAID));
   //$('#div-path-data').append('<br/>-----( ZoomY :) )--------->'+(NewStation === StationBID));

@@ -493,7 +493,6 @@ data: { StationA: StationAID, StationB: StationBID }
 
 }
 
-
 function AddStationMarkers()
 {
 //alert("AddStationMarkers");
@@ -756,12 +755,11 @@ return NewStation;
 //google.maps.event.addDomListener(window, 'load', initialize);
 function StartMacro(ZoomX)
 {
-  Station=Math.ceil(Math.random()*StationMarkers.length);
+  Station=Math.ceil(Math.random()*(StationMarkers.length-1));
   SelectStationMarker(Station);
 
-  Station=Math.ceil(Math.random()*StationMarkers.length);
+  Station=Math.ceil(Math.random()*(StationMarkers.length-1));
   SelectStationMarker(Station);
-
 
   var NewStation=onClickInfo();
 

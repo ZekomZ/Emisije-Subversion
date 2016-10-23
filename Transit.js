@@ -106,6 +106,7 @@ function FindMarkerByStationID(StationID)
 var tempSizeStationsData=StationsData.length;
 //alert(tempSizeStationsData);
 var MarkerID=-1;
+
 for(var i=0; i<tempSizeStationsData; i++)
 {
           // alert(i+":"+StationID+"StationsData:"+StationsData[i][0]);
@@ -120,7 +121,7 @@ for(var i=0; i<tempSizeStationsData; i++)
 //alert ("FindMarkerByStationID result:"+MarkerID);
 return MarkerID;
 }
-
+/*
 function InitRailPolyLines()
 {
 //vir:https://developers.google.com/maps/documentation/javascript/shapes
@@ -133,7 +134,6 @@ var i=-1;
 //var railPathCoordinates=[]; <--- global variable
 TrainStationCount=BusPolyLines[0].length;
 var busPolyLinesIndex = TrainStationCount;
-
 
 for ( TransitPolyLines of busPolyLines )
 {
@@ -191,7 +191,7 @@ google.maps.event.addListener(TransitPathAll[TransitPathAll.length-1],
     }
 
 }
-
+*/
 function initialize() {
 // Vir : https://developers.google.com/maps/documentation/javascript/markers
 var mapOptions = {
@@ -330,14 +330,22 @@ function ResetMarkers()
 
 function ResetStations()
 {
-   for (var TransitPathSingle of TransitPath)
+    // IE11 does not support of iterator : Adding idexes
+    // TransitPathSingleIndex : Iterator for active TransitPath array object
+    var TransitPathSingleIndex=0;
+    // TransitPathSingleIndex : Iterator for active TransitPath array object
+    var StationMarkersSingleIndex=0;
+
+
+   for (TransitPathSingleIndex=0; TransitPathSingleIndex<TransitPath.length; TransitPathSingleIndex++)
    {
+     TransitPathSingle=TransitPath[TransitPathSingleIndex];
      TransitPathSingle.setMap(null);
    }
    TransitPath=[];
    TransitPathCoordinates=[];
 
-   for (var StationMarkersSingle of StationMarkers)
+   for (StationMarkersSingleIndex=0;StationMarkersSingleIndex<StationMarkers.length;StationMarkersSingleIndex++)
    {
      StationMarkersSingle.setMap(null);
    }
@@ -349,8 +357,6 @@ function ResetStations()
    //$('#div-path-data').append($("input#checkbox-gama:checkbox:checked").val()+'<<---');
 
    initialize();
-
-
 
 }
 
@@ -585,12 +591,22 @@ function InitTransitPathData()
 TransitPathCoordinates=[];
 var TransitPathIndex=-1;
 var i=-1;
-for (TransitPolyLines of BusPolyLines)
-{
-TransitPathIndex++;
+// IE11 Does not support -of- iterator; Added Indexes
+// Index : TransitPolyLinesIndex --> Index of active poly-line of a path between two stations
+var TransitPolyLinesIndex=0;
+// Index : TransitPathSingle --> Two pairs of Lat-Lng locations of the transit path from the "train / bus" route track
+var TransitPathSingleIndex=0;
+// Index : TransitPathCoord  --> Single pair of Lat-Lng data
+var TransitPathCoordIndex=0;
 
-for (var TransitPathSingle of TransitPolyLines )
+for (TransitPolyLinesIndex=0; TransitPolyLinesIndex<BusPolyLines.length; TransitPolyLinesIndex++)
 {
+  TransitPolyLines=BusPolyLines[TransitPolyLinesIndex];
+  TransitPathIndex++;
+
+for (TransitPathSingleIndex=0;TransitPathSingleIndex<TransitPolyLines.length;TransitPathSingleIndex++)
+{
+    TransitPathSingle = TransitPolyLines[TransitPathSingleIndex];
    if(TransitPathIndex>0)
    {
      if(!($("input#checkbox-bus:checkbox:checked").val()=="Bus"))
@@ -599,8 +615,10 @@ for (var TransitPathSingle of TransitPolyLines )
      }
    }
    var TransitPathCoordinatesSingle=[];
-   for ( TransitPathCoord of TransitPathSingle )
+   for ( TransitPathCoordIndex=0;TransitPathCoordIndex<TransitPathSingle.length;TransitPathCoordIndex++ )
    {
+     TransitPathCoord=TransitPathSingle[TransitPathCoordIndex];
+
      if(TransitPathIndex==0)
      {
        if(!($("input#checkbox-train:checkbox:checked").val()=="Train")){break;}
@@ -671,12 +689,20 @@ animateCircle();
 
 // Use the DOM setInterval() function to change the offset of the symbol
 // at fixed intervals.
+
 function animateCircle() {
 var count = 0;
-window.setInterval(function() {
 
-  for (var TransitPathSingle of TransitPath)
+TransitPathSingleIndex=0;
+// IE 11 does not suppor of iterator. Added Indexes:
+// TransitPathSingleIndex : TransitPath declared transit icon (airplane/bus/train) animation data of the active path between two stations
+
+window.setInterval(function AnimateBus() {
+
+  for (TransitPathSingleIndex=0;TransitPathSingleIndex<TransitPath.length;TransitPathSingleIndex++)
   {
+    TransitPathSingle=TransitPath[TransitPathSingleIndex];
+
     count = (count + 1) % 200;
 
     var icons = TransitPathSingle.get('icons');

@@ -347,6 +347,7 @@ function ResetStations()
 
    for (StationMarkersSingleIndex=0;StationMarkersSingleIndex<StationMarkers.length;StationMarkersSingleIndex++)
    {
+     var StationMarkersSingle = StationMarkers[StationMarkersSingleIndex];
      StationMarkersSingle.setMap(null);
    }
 
@@ -362,9 +363,13 @@ function ResetStations()
 
 function DeleteLastMarker()
 {
-// TODO : add check if zero markers
-markers[markers.length-1].setMap(null);
-markers=markers.slice(0,markers.length-1);
+
+if (markers.length>0)
+{
+  markers[markers.length-1].setMap(null);
+  markers=markers.slice(0,markers.length-1);
+}
+
 ResetPolyLine();
 
 }

@@ -21,9 +21,10 @@ iframe
   width:96%;
 }
 
+
 iframe.iframe-transit-map
 {
-  height:1395px;
+  height:1355px;
   float: left;
   margin-left: 1%;
   clear:both;

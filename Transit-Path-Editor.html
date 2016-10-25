@@ -15,11 +15,11 @@
 
   </head>
   <body>
+    <div id="editor-top"></div>
     <div class="div-toolbar-header-3col">
     <div class="div-toolbar-header">
       <div class="div-toolbar-header-frame">
         <div id="div-control-box">
-
             <div id="div-control-buttons">
               <input type="button" onmouseover="ButtonHelpInfo(7);" onclick="StartMacro(1);" value="Start()"/>
             </div>
@@ -30,7 +30,7 @@
 
        </div>
 
-       <div class="div-toolbar-header-frame">
+    <div class="div-toolbar-header-frame">
       <div id="div-control-buttons">
          <input type="button" onmouseover="ButtonHelpInfo(1);" onclick="ResetStations();" value="Reset Map"/>
          <input type="button" onmouseover="ButtonHelpInfo(2);" onclick="ResetMarkers();" value="Reset Markers"/>
@@ -42,6 +42,13 @@
         <input type="button" onmouseover="ButtonHelpInfo(5);" onclick="ZoomStationA();" value="ZoomA"/>
         <input type="button" onmouseover="ButtonHelpInfo(6);" onclick="ZoomStationB();" value="ZoomB"/>
      </div>
+     <div id="div-control-buttons">
+       <br/>
+       <h1><a id="hd-image-link" href="#img-zekom-street-view"> ---( Show HD image )--- </a></h1>
+       <br/>
+     </div>
+
+
     </div>
 
   </div>
@@ -84,8 +91,11 @@
         <br>Zekom Tribute Magazine - Community Page about All your base are belong to us
         <br>·<a target="_blank" href="http://en.wikipedia.org/wiki/All_your_base_are_belong_to_us"> http://en.wikipedia.org/wiki/All_your_base_are_belong_to_us· </a>
       </div>
-      <h1>...</h1>
-      <img id="img-zekom-street-view" src="./images/girl-in-sunflower-dress-and-sunflower-field.jpg" width="100%" height="999"></img>
-
+      <h1>
+      <a id="hd-image-return-link" href="#editor-top">
+         --- ( Return to map ) ---
+        <img id="img-zekom-street-view" src="./images/girl-in-sunflower-dress-and-sunflower-field.jpg" width="100%"></img>
+      </a>
+      </h1>
   </body>
 </html>

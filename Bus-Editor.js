@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
+/**
+@module Bus-Editor
+*/
 
 /*var Stations =[new google.maps.LatLng(45.886277,13.902437),
 new google.maps.LatLng(46.05809,13.617254),
@@ -1521,6 +1517,8 @@ StationsData =
 
 ];
 */
+
+/**inner*/
 var Stations=[];
 Stations =
 [
@@ -3581,6 +3579,7 @@ StationsData=
 //alert("Stations-->"+Stations.length)
 //alert("StationsData-->"+StationsData.length)
 
+/**inner*/
 var TransitPolyLinesColor=[];
 TransitPolyLinesColor[0]="#393";
 TransitPolyLinesColor[1]="#d8362b";

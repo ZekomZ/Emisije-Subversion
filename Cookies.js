@@ -1,5 +1,18 @@
-//http://www.w3schools.com/js/js_cookies.asp
+/**@module Cookies
+* @class Cookie
+* @constructor
+* @desc Class wrapper for javascript Cookies.js script
+* See : {@link http://www.w3schools.com/js/js_cookies.asp}
+*/
+Cookie=function(){};
 
+/**
+@function setCookie
+@desc sets cookie for a user session
+@param {string} cname
+@param {string} cvalue
+@param {integer} cexdays
+*/
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -7,6 +20,11 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + "=" + cvalue + "; " + expires;
 }
 
+/**
+@function getCookie
+@desc get cookie for a user session
+@param {string} cname
+*/
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
@@ -22,6 +40,13 @@ function getCookie(cname) {
     return "";
 }
 
+/**
+@function checkCookie
+@desc sets cookie for a user session
+@param {string} cname
+@param {string} cvalue
+@param {integer} cexdays
+*/
 function checkCookie() {
     var data = getCookie("test");
     if (data != "")
@@ -33,7 +58,7 @@ function checkCookie() {
     else
     {
        //alert("New visitor " + data);
-       $("#div-cookies").css("visibility", "visible");
+        document.getElementById("div-cookies").style.visibility="visible";
         $("#div-cookies").animate({
           opacity: 0.9,
           height: "100px",
@@ -44,6 +69,11 @@ function checkCookie() {
     }
 }
 
+/**
+@function SetFormatX
+@memberof Cookies
+@param {integer} A positive number, representing google.maps.zoom ( 1 - 32 )
+*/
 function SetFormatX(ZoomX)
 {
     iframeWidth=""+((ZoomX-1)*111+96)+"%";
@@ -59,7 +89,8 @@ $(document).ready(function(){
     //alert('ok');
     $( "#div-cookies" ).animate({
       opacity: 0.1,
-      height: "0px"
+      height: "0px",
+      visibility: "hidden"
     }, 2000, function() {
       // Animation complete.
       setCookie("test", "123", 30);

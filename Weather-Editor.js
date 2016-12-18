@@ -1,3 +1,6 @@
+/**
+@module Weather-Editor
+*/
 
 var WeatherStationData=new Array();
 WeatherStationData[0] = new Array("Arso – Vojkova ulica", 46.070992, 14.518669);

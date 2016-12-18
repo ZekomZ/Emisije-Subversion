@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Weather-Editor.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Weather-Editor.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+@module Weather-Editor
+*/
+
+var WeatherStationData=new Array();
+WeatherStationData[0] = new Array("Arso – Vojkova ulica", 46.070992, 14.518669);
+WeatherStationData[1] = new Array("Bilje Nova Gorica", 45.893944, 13.637315);
+WeatherStationData[2] = new Array("Bohinjska Češnjica", 46.295452, 13.945543);
+WeatherStationData[3] = new Array("Bovec", 46.337641, 13.551684);
+WeatherStationData[4] = new Array("Boršt Gorenja vas", 46.088992, 14.171514);
+WeatherStationData[5] = new Array("Celje", 46.244695, 15.252523);
+WeatherStationData[6] = new Array("Dobliče Črnomelj", 45.560107, 15.150012);
+WeatherStationData[7] = new Array("Dolenje Ajdovščina", 45.869645, 13.900224);
+WeatherStationData[8] = new Array("Hrastnik", 46.139864, 15.080114);
+WeatherStationData[9] = new Array("Idrija", 46.010221, 14.029931);
+WeatherStationData[10] = new Array("Ilirska Bistrica", 45.564275, 14.240150);
+WeatherStationData[11] = new Array("Koper Kapitanija", 45.550376, 13.718687);
+WeatherStationData[12] = new Array("Luka Koper", 45.559682, 13.740139);
+WeatherStationData[13] = new Array("Kraj. park Goričko", 46.800474, 16.096122);
+WeatherStationData[14] = new Array("Krško", 45.939844, 15.500899);
+WeatherStationData[15] = new Array("Lendava", 46.549175, 16.460794);
+WeatherStationData[16] = new Array("Let. J. Pučnika Lj.", 46.212964, 14.478637);
+WeatherStationData[17] = new Array("Letališče Cerklje ob Krki", 45.893686, 15.525062);
+WeatherStationData[18] = new Array("Letališče Lesce", 46.360952,  14.168991);
+WeatherStationData[19] = new Array("Let. E. Rusjana Maribor", 46.479464, 15.681849);
+WeatherStationData[20] = new Array("Letališče Portorož", 45.472164, 13.615209);
+WeatherStationData[21] = new Array("Litija", 46.058424, 14.825488);
+WeatherStationData[22] = new Array("Ljubljana", 46.065811, 14.517263);
+WeatherStationData[23] = new Array("Malkovec", 45.950224, 15.199917);
+WeatherStationData[24] = new Array("Maribor", 46.540553, 15.640531);
+WeatherStationData[25] = new Array("Murska Sobota", 46.652513, 16.196091);
+WeatherStationData[26] = new Array("Nova Gorica", 45.953936, 13.637300);
+WeatherStationData[27] = new Array("Novo mesto", 45.802521, 15.182376);
+WeatherStationData[28] = new Array("Park Škocj. jame", 45.656522, 13.989364);
+WeatherStationData[29] = new Array("Piran-ocean. boja", 45.526625, 13.566046);
+WeatherStationData[30] = new Array("Podčetrtek", 46.151087, 15.605087);
+WeatherStationData[31] = new Array("Postojna", 45.766428, 14.197486);
+WeatherStationData[32] = new Array("Ptuj", 46.420360, 15.848768);
+WeatherStationData[33] = new Array("Radenci", 46.639654, 16.049407);
+WeatherStationData[34] = new Array("Ravne na Koroškem", 46.549824, 14.940487);
+WeatherStationData[35] = new Array("Slovenj Gradec", 46.490331, 15.115368);
+WeatherStationData[36] = new Array("Velenje", 46.359969, 15.109987);
+WeatherStationData[37] = new Array("Babno Polje (756 m)", 45.650193, 14.542282);
+WeatherStationData[38] = new Array("Rateče (864 m)", 46.499860, 13.709507);
+WeatherStationData[39] = new Array("Lisca (943 m)", 46.068545, 15.293407);
+WeatherStationData[40] = new Array("Otlica (965 m)", 45.948414, 13.928941);
+WeatherStationData[41] = new Array("Rudno polje (1347 m)", 46.345932, 13.923090);
+WeatherStationData[42] = new Array("Rogla (1492 m)", 46.450256, 15.329507);
+WeatherStationData[43] = new Array("Krvavec (1740 m)", 46.300315, 14.536625);
+WeatherStationData[44] = new Array("Kredarica (2515 m)", 46.378835, 13.842720);
+WeatherStationData[45] = new Array("Arso – Samodejna vremenska postaja", 44.12345, 13.123456789);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Bus-Editor.html">Bus-Editor</a></li><li><a href="module-Gama-Editor.html">Gama-Editor</a></li><li><a href="module-Trains-Editor.html">Trains-Editor</a></li><li><a href="module-Weather-Editor.html">Weather-Editor</a></li></ul><h3>Classes</h3><ul><li><a href="Transit.html">Transit</a></li><li><a href="TransitEngine.html">TransitEngine</a></li><li><a href="ZoomBus.html">ZoomBus</a></li><li><a href="ZoomHelicopter.html">ZoomHelicopter</a></li><li><a href="ZoomTrain.html">ZoomTrain</a></li><li>{google.maps.coordinates}</li></ul><h3>Global</h3><ul><li><a href="global.html#addLatLng">addLatLng</a></li><li><a href="global.html#AddStationMarkers">AddStationMarkers</a></li><li><a href="global.html#AddWeatherStationMarkers">AddWeatherStationMarkers</a></li><li><a href="global.html#AddXMLStationRail">AddXMLStationRail</a></li><li><a href="global.html#animateCircle">animateCircle</a></li><li><a href="global.html#CatchException">CatchException</a></li><li><a href="global.html#DeleteLastMarker">DeleteLastMarker</a></li><li><a href="global.html#DisplayAugmentedReality">DisplayAugmentedReality</a></li><li><a href="global.html#DisplayStationInfo">DisplayStationInfo</a></li><li><a href="global.html#ExecuteSQL">ExecuteSQL</a></li><li><a href="global.html#FindMarkerByStationID">FindMarkerByStationID</a></li><li><a href="global.html#FunctionStart">FunctionStart</a></li><li><a href="global.html#Initialize">Initialize</a></li><li><a href="global.html#InitTransitPath">InitTransitPath</a></li><li><a href="global.html#InitTransitPathData">InitTransitPathData</a></li><li><a href="global.html#LoadTrafficInfo">LoadTrafficInfo</a></li><li><a href="global.html#map">map</a></li><li><a href="global.html#NewTransit">NewTransit</a></li><li><a href="global.html#onClickInfo">onClickInfo</a></li><li><a href="global.html#OnClickInfoWeatherStation">OnClickInfoWeatherStation</a></li><li><a href="global.html#RailSelectA">RailSelectA</a></li><li><a href="global.html#RailSelectB">RailSelectB</a></li><li><a href="global.html#ResetMarkers">ResetMarkers</a></li><li><a href="global.html#ResetPolyLine">ResetPolyLine</a></li><li><a href="global.html#ResetStations">ResetStations</a></li><li><a href="global.html#SelectStationMarker">SelectStationMarker</a></li><li><a href="global.html#SelectWeatherStationMarkers">SelectWeatherStationMarkers</a></li><li><a href="global.html#StartMacro">StartMacro</a></li><li><a href="global.html#SwitchAugmentedReality">SwitchAugmentedReality</a></li><li><a href="global.html#UpdateDocumentationInformation">UpdateDocumentationInformation</a></li><li><a href="global.html#UpdateStreetViewLocation">UpdateStreetViewLocation</a></li><li><a href="global.html#ZoomStationA">ZoomStationA</a></li><li><a href="global.html#ZoomStationB">ZoomStationB</a></li><li><a href="global.html#ZoomStationX">ZoomStationX</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Dec 17 2016 15:40:19 GMT+0100 (CET)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

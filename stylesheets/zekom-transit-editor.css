@@ -3,12 +3,23 @@ html, body {
     margin: 0px;
     padding: 0px;
     font-size: 11px;
-
   }
   h1
   {
     color:#393;
     text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  h2
+  {
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+  h3
+  {
+    margin-top: 1px;
+    margin-bottom: 1px;
   }
 
   .div-toolbar-footer-frame h1
@@ -16,8 +27,7 @@ html, body {
     text-align: left;
   }
 
-
-  input[type="button"] {
+    input[type="button"] {
       float: left;
       width: 30%;
       height: 85%;
@@ -35,11 +45,9 @@ img.img-gama
   border: none;
 }
 
-img#img-zekom-street-view
+gm-style-iw
 {
-  margin-top: 15px;
-  width: 99%;
-  height: 950px;
+  background-color: #9a9b9e ;
 }
 
 a, a:visited
@@ -55,6 +63,18 @@ a:hover
   font-weight: bold;
 }
 
+#div-hd-image
+{
+  position: absolute;
+  top : 14em;
+  left: 3em;
+  width: 65%;
+  height: 39em;
+  background: transparent;
+  overflow: hidden;
+  opacity: 0.7;
+  visibility: hidden;
+}
 #hd-image
 {
   margin-top: 25px;
@@ -73,12 +93,53 @@ a:hover
   text-align: center;
 }
 
+#div-iframe-threejs-3d
+{
+  width: 88%;
+  height: 33%;
+  margin-left: auto;
+  background: url(../images/1325703602155-All-Glory-To-The-Hypnocat.gif) top center no-repeat;
+  background-size: 50%;
+  float: left;
+  margin-left: 2em;
+}
+#iframe-threejs-3d
+{
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  float: left;
+  margin: 0px;
+  visibility: hidden;
+}
+
+#iframe-threejs-3d-max
+{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  float: right;
+  margin-left: 0px;
+}
+
+#img-zekom-street-view
+{
+  position: absolute;
+  margin-left: 0px;
+  float: left;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+  clear:none;
+}
+
 .div-toolbar-header-3col
 {
     width:100%;
     height:250px;
     overflow: hidden;
-    margin-bottom: 50px;
+    margin-bottom: 0px;
 }
 .div-toolbar-header
 {
@@ -106,11 +167,47 @@ a:hover
   height: 100%;
   clear:none;
 }
-  #div-map-canvas
-  {
-    height:735px;
-    width:100%;
-  }
+
+#div-map-canvas-wrapper
+{
+  width:100%;
+  height:955px;
+  background: #FFEEFF right top;
+}
+
+#div-map-canvas-wrapper-left
+{
+  width:70%;
+  float:left;
+  height: 100%;
+}
+
+#div-map-canvas-wrapper-right
+{
+  width:30%;
+  float:right;
+  height: 100%;
+}
+
+#div-map-canvas
+{
+  width:100%;
+  height:100%;
+}
+
+#iframe-documentation
+{
+  width: 100%;
+  height: 44%;
+  clear:both;
+}
+#div-console-debug
+{
+  width: 100%;
+  height: 33%;
+  overflow-y: scroll;
+  clear:both;
+}
 
   #div-control-box
   {
@@ -120,16 +217,50 @@ a:hover
       clear:none;
   }
 
-  #div-control-buttons
+  .div-control-buttons
   {
       width:95%;
-      height:25%;
+      height:7em;
       clear:both;
-      margin : 1% 1% auto auto;
+      margin : 1px 1px auto auto;
+      float:left;
+  }
+  .div-control-checkbox
+  {
+      width:95%;
+      height:5em;
+      clear:both;
+      margin : 1px 1px auto auto;
       float:left;
   }
 
-  #div-path-data
+  #div-control-buttons-augmented-reality-settings
+  {
+      width:95%;
+      height:16em;
+      clear:both;
+      margin : 1% 1% 1px 1px;
+      float:right;
+  }
+
+  #div-control-buttons-format-settings
+  {
+      width:95%;
+      height:10em;
+      clear:both;
+      margin : 0px;
+      float:right;
+  }
+  #div-vehicle-control-buttons
+  {
+      width:95%;
+      height:7em;
+      clear:both;
+      margin : 0px;
+      float:right;
+  }
+
+  #div-console-data
   {
       width:100%;
       height:69%;
@@ -140,11 +271,12 @@ a:hover
   .div-toolbar-footer
   {
     width:99%;
-    height:200px;
+    height:11em;
     margin: auto auto auto 1% ;
     border-bottom: 1px;
     border-color: #112233;
     float:left;
+    text-align: left;
     clear:both;
   }
 
@@ -167,10 +299,19 @@ a:hover
   .div-toolbar-footer-breadcrumbs
   {
     width:100%;
+    height:7em;
+    overflow: hidden;
     float:left;
     text-align: center;
-    font-size: 22px;
+    font-size: 21px;
     font-family: "Arial", Times, Sans-serif;
     font-style: oblique;
-    margin-bottom: 50px;
+    margin-bottom: 0px;
+  }
+
+  #div-documentation-toolbar
+  {
+    width: 100%;
+    height:50%
+    background-color:inherit;
   }

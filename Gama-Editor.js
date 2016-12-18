@@ -1,3 +1,7 @@
+/**
+@module Gama-Editor
+*/
+/**@inner*/
 var GamaKartaImg  = [];
 var GamaKartaLatLng = [];
 var GamaKartaDatUra = [];
@@ -11,18 +15,23 @@ function ButtonHelpInfo(ButtonNumber)
   GamaColorSelector++;
   GamaColorSelector=GamaColorSelector%TransitPolyLinesColor.length;
 
-  //$('#div-path-data').html($("input#checkbox-train:checkbox:checked").val()+'<<---');
-  //$('#div-path-data').append($( "input#checkbox-bus:checkbox:checked").val()+'<<---');
-  //$('#div-path-data').append($( "input#checkbox-gama:checkbox:checked").val()+'<<---');
-
-  $('#div-path-data').append('<br/>-----( ButtonHelpInfo )---------> '+ GamaColorSelector+'--> '+ TransitPolyLinesColor[GamaColorSelector]);
-  $("#div-path-data").css("color", TransitPolyLinesColor[GamaColorSelector]);
+  $('#div-console-data').append('<br/>-----( ButtonHelpInfo )---------> '+ GamaColorSelector+'--> '+ TransitPolyLinesColor[GamaColorSelector]);
+  $("#div-console-data").css("color", TransitPolyLinesColor[GamaColorSelector]);
   $(".div-toolbar-footer-breadcrumbs").css("color", TransitPolyLinesColor[GamaColorSelector]);
-
 }
 
-/// Source : http://www.radioaktivnost.si/ewsmambo/EWS/POZDRAV/MZO_gmaps1.html
-// Funkcija ki naredi marker (Creates a marker whose info window displays the letter corresponding)
+/**
+@function createMarkerGreen
+@memberof Gama-Editor
+@param {google.maps.LatLng} point
+@param {string} ime
+@param {integer} vrednost
+@param {MIME} slika
+@param {object} datura
+@desc
+Source : {@link http://www.radioaktivnost.si/ewsmambo/EWS/POZDRAV/MZO_gmaps1.html}
+Funkcija, ki naredi marker (Creates a marker whose info window displays the letter corresponding)
+*/
 function createMarkerGreen(point, ime, vrednost, slika, datura) {
                 // This example displays a marker.
                 // When the user clicks the marker, an info window opens.
@@ -42,6 +51,8 @@ function createMarkerGreen(point, ime, vrednost, slika, datura) {
                     content: contentString
                   });
 
+
+          /**@inner*/
           var GamaSymbol;
           if (vrednost == 0)
           {
@@ -74,6 +85,7 @@ function createMarkerGreen(point, ime, vrednost, slika, datura) {
           {
             GamaSymbol = {
             url: 'http://www.ursjv.gov.si/fileadmin/_migrated/pics/pozor_sevanje.jpg',
+
             // This marker is 20 pixels wide by 32 pixels high.
             size: new google.maps.Size(77, 100),
             // The origin for this image is (0, 0).

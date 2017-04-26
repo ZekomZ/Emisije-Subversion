@@ -347,11 +347,12 @@ try
     trafficLayer.setMap(null);
 
   ResetMarkers();
-  AddStationMarkers();
   InitTransitPath();
   UpdateStreetViewLocation(WeatherStationData[0][1],WeatherStationData[0][2]);
   DisplayAugmentedReality();
+  AddStationMarkers();
 
+  if ($("input#checkbox-camera:checkbox:checked").val()=="Camera"){LoadCameraInfo();}
   if ($("input#checkbox-weather:checkbox:checked").val()=="Weather"){AddWeatherStationMarkers();}
   if ($("input#checkbox-gama:checkbox:checked").val()=="Gama"){LoadGamaInfo();}
   if ($("input#checkbox-traffic:checkbox:checked").val()=="Traffic"){LoadTrafficInfo();}
@@ -1191,12 +1192,13 @@ try
       icons[0].offset = (count / 2) + '%';
       TransitPathSingle.set('icons', icons);
     }
-  }, 1000);
+  }, 1111);
 }
 catch(Error)
 {
   CatchException(this.FunctionRef,Error);
 }
+
 }
 
 /**
@@ -1320,17 +1322,17 @@ anchor: new google.maps.Point(55, 33)
 WeatherStationBaseIconX = {
 url: './images/girl-in-sunflower-dress-and-sunflower-field-resized-4x.jpg',
 // This marker is 20 pixels wide by 32 pixels high.
-size: new google.maps.Size(333, 222),
+size: new google.maps.Size(35, 35),
 // The origin for this image is (0, 0).
 origin: new google.maps.Point(0, 0),
 // The anchor for this image is the base of the flagpole at (0, 32).
-anchor: new google.maps.Point(-33, -55)
+anchor: new google.maps.Point(30, 17)
 };
 
 WeatherClubCardIcon = {
 url: './images/Helianthus_annuus_sunflower-Resized-2x.jpg',
 // This marker is 20 pixels wide by 32 pixels high.
-size: new google.maps.Size(250, 222),
+size: new google.maps.Size(640, 444),
 // The origin for this image is (0, 0).
 origin: new google.maps.Point(0, 0),
 // The anchor for this image is the base of the flagpole at (0, 32).
@@ -1353,6 +1355,7 @@ var WeatherStationMarkerX=null;
 @function AddWeatherStationMarkers
 @description The function to initialize Weather Station Markers in WeatherStationMarkers[] (google.maps.marker) and add weather station markers on the map (google.maps) object
 Tutorial : see {@tutorial AddWeatherStationMarkers}
+@description : Added airport webcam : http://www.lju-airport.si/sl/interaktivno-letalisce/webcam/
 @param {google.maps.marker} object
 @listens {google.maps.markers.onclick event} WeatherStationMarkers[i]
 */
@@ -1371,9 +1374,41 @@ try
   {
     //return;
   }
+/*
+  WeatherStationData[46] = new Array("Aerodrom Ljubljana - Webcam 1", 46.227348, 14.455521);
+  WeatherStationData[47] = new Array("Aerodrom Ljubljana - Webcam 2", 46.232124, 14.440645);
+*/
+  /*
+  // @description Add markers for airport web cams 1 and 2
+  */
+/*  new google.maps.Marker({
+            position: new google.maps.LatLng(46.227348, 14.455521),
+            title: WeatherStationData[i][0] + '#Aerodrom Ljubljana - Webcam 1' ,
+            map: map,
+            icon:WeatherStationAirport1
+        });
+
+  new google.maps.Marker({
+            position: new google.maps.LatLng(46.232124, 14.440645),
+            title: WeatherStationData[i][0] + '#Aerodrom Ljubljana - Webcam 2' ,
+            map: map,
+            icon:WeatherStationAirport2
+        });
+/*
+        GamaKartaImg[GamaKartaId]  = ;
+        GamaKartaLatLng[GamaKartaId] = n
+        GamaKartaDatUra[GamaKartaId] =;
+        GamaKartaLokacijaIme[GamaKartaId]="Ljubljana-ARSO";
+        GamaKartaInfoMarker[GamaKartaId] = createMarkerGreen(GamaKartaLatLng[GamaKartaId], GamaKartaLokacijaIme[GamaKartaId], GamaKartaId, GamaKartaImg[GamaKartaId], GamaKartaDatUra[GamaKartaId]);
+        GamaKartaInfoWindow[GamaKartaId].open(map, GamaKartaInfoMarker[GamaKartaId]);
+*/
+  createMarkerGreen('http://www.lju-airport.si/webcam/video2.jpg', new google.maps.LatLng(46.227348, 14.455521), -1, "#Aerodrom Ljubljana - Webcam 1", "http://www.lju-airport.si/sl/interaktivno-letalisce/webcam/");
+  createMarkerGreen('http://www.lju-airport.si/webcam/video1.jpg', new google.maps.LatLng(46.232124, 14.440645), -2, "#Aerodrom Ljubljana - Webcam 2", "http://www.lju-airport.si/sl/interaktivno-letalisce/webcam/");
+
 
   for (i=0; i<WeatherStationData.length; i++)
   {
+
 
       if (i==45){
         WeatherStationMarkers[i] = new google.maps.Marker({
@@ -1383,7 +1418,7 @@ try
                 icon:WeatherClubCardIcon
             });
       }
-      else if (i==0){
+     else if (i==0){
         WeatherStationMarkers[i] = new google.maps.Marker({
                 position: new google.maps.LatLng(WeatherStationData[i][1],WeatherStationData[i][2]),
                 title: WeatherStationData[i][0] + ' # Arso - Samodejna vremenska postaja' ,

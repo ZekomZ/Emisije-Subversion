@@ -15,6 +15,7 @@ html, body {
   {
     margin-top: 3px;
     margin-bottom: 3px;
+    text-align: center;
   }
   h3
   {
@@ -66,13 +67,13 @@ a:hover
 #div-hd-image
 {
   position: absolute;
-  top : 14em;
-  left: 3em;
+  top : 33em;
+  left: 7em;
   width: 65%;
-  height: 39em;
+  height: 69em;
   background: transparent;
   overflow: hidden;
-  opacity: 0.7;
+  opacity: 0.9;
   visibility: hidden;
 }
 #hd-image

@@ -3,6 +3,7 @@
 */
 
 var WeatherStationData=new Array();
+
 WeatherStationData[0] = new Array("Arso – Vojkova ulica", 46.070992, 14.518669);
 WeatherStationData[1] = new Array("Bilje Nova Gorica", 45.893944, 13.637315);
 WeatherStationData[2] = new Array("Bohinjska Češnjica", 46.295452, 13.945543);
@@ -49,3 +50,7 @@ WeatherStationData[42] = new Array("Rogla (1492 m)", 46.450256, 15.329507);
 WeatherStationData[43] = new Array("Krvavec (1740 m)", 46.300315, 14.536625);
 WeatherStationData[44] = new Array("Kredarica (2515 m)", 46.378835, 13.842720);
 WeatherStationData[45] = new Array("Arso – Samodejna vremenska postaja", 44.12345, 13.123456789);
+/*
+WeatherStationData[46] = new Array("Aerodrom Ljubljana - Webcam 1", 46.227348, 14.455521);
+WeatherStationData[47] = new Array("Aerodrom Ljubljana - Webcam 2", 46.232124, 14.440645);
+*/

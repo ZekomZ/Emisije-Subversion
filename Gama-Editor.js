@@ -22,7 +22,6 @@ function ButtonHelpInfo(ButtonNumber)
 
 /**
 @function createMarkerGreen
-@memberof Gama-Editor
 @param {google.maps.LatLng} point
 @param {string} ime
 @param {integer} vrednost
@@ -54,7 +53,32 @@ function createMarkerGreen(point, ime, vrednost, slika, datura) {
 
           /**@inner*/
           var GamaSymbol;
-          if (vrednost == 0)
+
+          if (vrednost == -1) {
+              GamaSymbol =
+              {
+                url: 'http://www.lju-airport.si/images/icon_webcam1.png',
+                // This marker is 20 pixels wide by 32 pixels high.
+                size: new google.maps.Size(320, 240),
+                // The origin for this image is (0, 0).
+                origin: new google.maps.Point(0, 0),
+                // The anchor for this image is the base of the flagpole at (0, 32).
+                anchor: new google.maps.Point(110, 110)
+              }
+          }
+          else if (vrednost == -2) {
+            GamaSymbol =
+            {
+              url: 'http://www.lju-airport.si/images/icon_webcam2.png',
+              // This marker is 20 pixels wide by 32 pixels high.
+              size: new google.maps.Size(35, 35),
+              // The origin for this image is (0, 0).
+              origin: new google.maps.Point(0, 0),
+              // The anchor for this image is the base of the flagpole at (0, 32).
+              anchor: new google.maps.Point(30, 17)
+            }
+          }
+          else if (vrednost == 0)
           {
             GamaSymbol = {
             url: 'http://www.sherv.net/cm/emo/futurama/hypnotoad-smiley-emoticon.gif',

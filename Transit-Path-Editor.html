@@ -12,6 +12,7 @@
     <script type="text/javascript" src="Trains-Editor.js"></script>
     <script type="text/javascript" src="Gama-Editor.js"></script>
     <script type="text/javascript" src="Weather-Editor.js"></script>
+    <script type="text/javascript" src="Camera-Editor.js"></script>
     <script type="text/javascript" src="Transit.js"></script>
   </head>
   <body>
@@ -55,10 +56,11 @@
             <form action="">
               <div class="div-control-checkbox">
                 <input id="checkbox-train" type="checkbox" onclick="ResetStations();" onmouseover="ButtonHelpInfo(9);" name="vehicle" value="Train" checked>Slovenske železnice
-                <input id="checkbox-bus" type="checkbox" onclick="ResetStations();" onmouseover="ButtonHelpInfo(10);" name="vehicle" value="Bus" checked>LPP - Ljubljanski potniški promet<br/>
+                <input id="checkbox-bus" type="checkbox" onclick="ResetStations();" onmouseover="ButtonHelpInfo(10);" name="vehicle" value="Bus" checked>LPP - Ljubljanski potniški promet
+                <input id="checkbox-traffic" type="checkbox" onclick="ResetStations();" onmouseover="ButtonHelpInfo(11);" name="vehicle" value="Traffic" checked>Google Traffic ( On / Off )<br/>
               </div>
               <div class="div-control-checkbox">
-                <input id="checkbox-traffic" type="checkbox" onclick="ResetStations();" onmouseover="ButtonHelpInfo(11);" name="vehicle" value="Traffic">Google Traffic ( On / Off )
+                <input id="checkbox-camera" type="checkbox" onclick="ResetStations();" onmouseover="ButtonHelpInfo(11);" name="vehicle" value="Camera">DARS kamere ( Alfa )
                 <input id="checkbox-weather" type="checkbox" onclick="ResetStations();" onmouseover="ButtonHelpInfo(12);" name="vehicle" value="Weather">ARSO - Vreme ( Beta )
                 <input id="checkbox-gama" type="checkbox" onclick="ResetStations();" onmouseover="ButtonHelpInfo(13);" name="vehicle" value="Gama">NEK - Gama karte<br/>
               </div>
@@ -131,16 +133,12 @@
         <br>Zekom Tribute Magazine - Community Page about All your base are belong to us
         <br>·<a target="_blank" href="https://en.wikipedia.org/wiki/All_your_base_are_belong_to_us"> https://en.wikipedia.org/wiki/All_your_base_are_belong_to_us· </a>
       </div>
-      <h1>
-      <a id="hd-image-return-link" href="#emisije-top" onclick="window.scrollTo(0,0);">
-         --- ( Return to map ) ---
-      </a>
        <hr>
+
        <div id="div-hd-image">
          <img id="img-zekom-street-view" src="./images/1325703602155-All-Glory-To-The-Hypnocat.gif" width="100%"/>
          <iframe id="iframe-threejs-3d-max" src="./threejs-3dmodels/threejs-loader.html"></iframe>
        <div>
-      </h1>
 
   </body>
 </html>

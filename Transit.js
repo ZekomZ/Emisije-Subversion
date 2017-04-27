@@ -350,12 +350,13 @@ try
   InitTransitPath();
   UpdateStreetViewLocation(WeatherStationData[0][1],WeatherStationData[0][2]);
   DisplayAugmentedReality();
-  AddStationMarkers();
 
   if ($("input#checkbox-camera:checkbox:checked").val()=="Camera"){LoadCameraInfo();}
   if ($("input#checkbox-weather:checkbox:checked").val()=="Weather"){AddWeatherStationMarkers();}
   if ($("input#checkbox-gama:checkbox:checked").val()=="Gama"){LoadGamaInfo();}
   if ($("input#checkbox-traffic:checkbox:checked").val()=="Traffic"){LoadTrafficInfo();}
+
+  AddStationMarkers();
 
   // Add a listener for the click event
   google.maps.event.addListener(map, 'click', addLatLng);

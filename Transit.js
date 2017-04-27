@@ -150,6 +150,7 @@ var polyOptions = {};
 var trafficLayer = new google.maps.TrafficLayer();
 trafficLayer.setMap(map);
 
+/*
 var TransitStationIcon = {
 path: 'M 0,0 -10,-3 -6,-10 0,-10 6,-10 10,-3 z',
 fillColor: 'blue',
@@ -157,6 +158,17 @@ fillOpacity: 0.8,
 scale: 1,
 strokeColor: 'red',
 strokeWeight: 1
+};
+*/
+
+var TransitStationIcon = {
+url: './images/Bus-stop-icon.png',
+// This marker is 20 pixels wide by 32 pixels high.
+size: new google.maps.Size(20, 18),
+// The origin for this image is (0, 0).
+origin: new google.maps.Point(0, 0),
+// The anchor for this image is the base of the flagpole at (0, 32).
+anchor: new google.maps.Point(10, 18)
 };
 
 if (EditMode=="rails")
@@ -173,14 +185,25 @@ strokeWeight: 1
 
 if (EditMode=="transit")
 {
-var TransitStationIcon = {
+/*var TransitStationIcon = {
 path: 'M 0,0 -5,-3 -3,-5 0,-5 3,-5 5,-3 z',
 fillColor: 'blue',
 fillOpacity: 0.3,
 scale: 1,
 strokeColor: 'red',
 strokeWeight: 1
+};*/
+var TransitStationIcon = {
+url: './images/Bus-stop-icon.png',
+// This marker is 20 pixels wide by 32 pixels high.
+size: new google.maps.Size(16, 20),
+// The origin for this image is (0, 0).
+origin: new google.maps.Point(0, 0),
+// The anchor for this image is the base of the flagpole at (0, 32).
+anchor: new google.maps.Point(8, 10),
+fillOpacity:0.3
 };
+
 }
 
 var TransitStationAIcon = {
@@ -347,16 +370,17 @@ try
     trafficLayer.setMap(null);
 
   ResetMarkers();
+
+  if ($("input#checkbox-bus:checkbox:checked").val()=="Bus"){AddStationMarkers();}
   InitTransitPath();
   UpdateStreetViewLocation(WeatherStationData[0][1],WeatherStationData[0][2]);
   DisplayAugmentedReality();
+
 
   if ($("input#checkbox-camera:checkbox:checked").val()=="Camera"){LoadCameraInfo();}
   if ($("input#checkbox-weather:checkbox:checked").val()=="Weather"){AddWeatherStationMarkers();}
   if ($("input#checkbox-gama:checkbox:checked").val()=="Gama"){LoadGamaInfo();}
   if ($("input#checkbox-traffic:checkbox:checked").val()=="Traffic"){LoadTrafficInfo();}
-
-  AddStationMarkers();
 
   // Add a listener for the click event
   google.maps.event.addListener(map, 'click', addLatLng);

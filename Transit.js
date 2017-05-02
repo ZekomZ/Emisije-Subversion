@@ -1430,10 +1430,8 @@ try
   createMarkerGreen('http://www.lju-airport.si/webcam/video2.jpg', new google.maps.LatLng(46.227348, 14.455521), -1, "#Aerodrom Ljubljana - Webcam 1", "http://www.lju-airport.si/sl/interaktivno-letalisce/webcam/");
   createMarkerGreen('http://www.lju-airport.si/webcam/video1.jpg', new google.maps.LatLng(46.232124, 14.440645), -2, "#Aerodrom Ljubljana - Webcam 2", "http://www.lju-airport.si/sl/interaktivno-letalisce/webcam/");
 
-
   for (i=0; i<WeatherStationData.length; i++)
   {
-
 
       if (i==45){
         WeatherStationMarkers[i] = new google.maps.Marker({
@@ -1649,7 +1647,6 @@ catch(Error)
   CatchException(this.FunctionRef,Error);
 }
 }
-
 
 /**
 @function DisplayAugmentedReality

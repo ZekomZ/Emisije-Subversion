@@ -369,8 +369,6 @@ try
     map = new google.maps.Map(document.getElementById('div-map-canvas'), mapOptions);
     trafficLayer.setMap(null);
 
-    var bikeLayer = new google.maps.BicyclingLayer();
-    bikeLayer.setMap(map);
 
   ResetMarkers();
 
@@ -1398,6 +1396,9 @@ try
   var marker;
   var markerEvent;
   var i=1;
+
+  var bikeLayer = new google.maps.BicyclingLayer();
+  bikeLayer.setMap(map);
 
   if (WeatherStationMarkers.length>0)
   {

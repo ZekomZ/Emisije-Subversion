@@ -1,27 +1,27 @@
-<?php 
+<?php
 // Vir: 11.vaje, pri predmetu Spletne tehnologije
 class DBInit {
 
     private static $host = "localhost";
     private static $user = "root";
-    private static $password = "";
+    private static $password = "bitnami";
     private static $schema = "emisije";
     private static $instance = null;
 
     private function __construct() {
-        
+
     }
 
     private function __clone() {
-        
+
     }
 
     /**
      * Returns a PDO instance -- a connection to the database.
      * The singleton instance assures that there is only one connection active
      * at once (within the scope of one HTTP request)
-     * 
-     * @return PDO instance 
+     *
+     * @return PDO instance
      */
     public static function getInstance() {
         if (!self::$instance) {

@@ -355,7 +355,7 @@ google.maps.event.addListener(TransitPathAll[TransitPathAll.length-1],
 */
 function Initialize()
 {
-this.FunctionRef=Initialize
+this.FunctionRef=Initialize;
 FunctionStart(this.FunctionRef);
 try
 {
@@ -369,6 +369,9 @@ try
     map = new google.maps.Map(document.getElementById('div-map-canvas'), mapOptions);
     trafficLayer.setMap(null);
 
+    var bikeLayer = new google.maps.BicyclingLayer();
+    bikeLayer.setMap(map);
+
   ResetMarkers();
 
   if ($("input#checkbox-bus:checkbox:checked").val()=="Bus"){AddStationMarkers();}
@@ -376,8 +379,9 @@ try
   UpdateStreetViewLocation(WeatherStationData[0][1],WeatherStationData[0][2]);
   DisplayAugmentedReality();
 
+  if ($("input#checkbox-train:checkbox:checked").val()=="Train"){setTimeout(AddTrainStationMarkers(),5111);}
 
-  if ($("input#checkbox-camera:checkbox:checked").val()=="Camera"){LoadCameraInfo();}
+  if ($("input#checkbox-camera:checkbox:checked").val()=="Camera"){setTimeout(LoadCameraInfo(),3111);}
   if ($("input#checkbox-weather:checkbox:checked").val()=="Weather"){AddWeatherStationMarkers();}
   if ($("input#checkbox-gama:checkbox:checked").val()=="Gama"){LoadGamaInfo();}
   if ($("input#checkbox-traffic:checkbox:checked").val()=="Traffic"){LoadTrafficInfo();}

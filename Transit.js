@@ -1359,13 +1359,13 @@ anchor: new google.maps.Point(30, 17)
 };
 
 WeatherClubCardIcon = {
-url: './images/Helianthus_annuus_sunflower-Resized-2x.jpg',
-// This marker is 20 pixels wide by 32 pixels high.
-size: new google.maps.Size(640, 444),
-// The origin for this image is (0, 0).
-origin: new google.maps.Point(0, 0),
-// The anchor for this image is the base of the flagpole at (0, 32).
-anchor: new google.maps.Point(125, 55)
+  url: './images/Helianthus_annuus_sunflower-Resized-4x.jpg',
+  // This marker is 20 pixels wide by 32 pixels high.
+  size: new google.maps.Size(111, 77),
+  // The origin for this image is (0, 0).
+  origin: new google.maps.Point(0, 0),
+  // The anchor for this image is the base of the flagpole at (0, 32).
+  anchor: new google.maps.Point(55, 33)
 };
 
 var WeatherStationIconSelectedX = {

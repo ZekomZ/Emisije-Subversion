@@ -216,7 +216,7 @@ size: new google.maps.Size(33 , 33),
 // The origin for this image is (0, 0).
 origin: new google.maps.Point(0, 0),
 // The anchor for this image is the base of the flagpole at (0, 32).
-anchor: new google.maps.Point(11, 55)
+anchor: new google.maps.Point(16, 11)
 };
 
 /**

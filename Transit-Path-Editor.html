@@ -4,7 +4,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Transit.js - editor</title>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3ftXQcNKQgHXgNbZ7bud7S0N_TUFyubQ"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1YN5uGjXLWlHDBeDQoyOQsgyroSXt-Yo"></script>
     <script type="text/javascript" src="jquery-3.1.0.min.js"></script>
     <link rel="stylesheet" href="stylesheets/zekom-transit-editor.css">
 
@@ -15,128 +15,130 @@
     <script type="text/javascript" src="Camera-Editor.js"></script>
     <script type="text/javascript" src="TrainScheduleData.js"></script>
     <script type="text/javascript" src="TrainScheduleStations.js"></script>
+    <script type="text/javascript" src="TrainScheduleMacro.js"></script>
+
     <script type="text/javascript" src="Transit.js"></script>
   </head>
   <body>
-    <div id="emisije-top"></div>
-    <div class="div-toolbar-header-3col">
-    <div class="div-toolbar-header">
-      <div class="div-toolbar-header-frame">
-        <div id="div-control-box">
-            <div class="div-control-buttons">
-              <input type="button" onmouseover="ButtonHelpInfo(7);" onclick="StartMacro(1);" value="Start()"/>
-            </div>
-            <div id="div-console-data"></div>
-          </div>
-
-       </div>
-
-    <div class="div-toolbar-header-frame">
-      <div class="div-control-buttons">
-         <input type="button" onmouseover="ButtonHelpInfo(1);" onclick="ResetStations();" value="Reset Map"/>
-         <input type="button" onmouseover="ButtonHelpInfo(2);" onclick="ResetMarkers();" value="Reset Markers"/>
-         <input type="button" onmouseover="ButtonHelpInfo(3);" onclick="DeleteLastMarker();" value="Delete ( last ) marker"/>
-       </div>
-
-      <div class="div-control-buttons">
-        <input type="button" onmouseover="ButtonHelpInfo(4);" onclick="ZoomStationX();" value="Zoom:Default"/>
-        <input type="button" onmouseover="ButtonHelpInfo(5);" onclick="ZoomStationA();" value="ZoomA"/>
-        <input type="button" onmouseover="ButtonHelpInfo(6);" onclick="ZoomStationB();" value="ZoomB"/>
-     </div>
-     <div class="div-control-buttons">
-       <br/>
-       <h2><a id="hd-image-link" onclick="SwitchAugmentedReality()" href="#emisije-top"> --- ( HD Augmented Reality Image ) --- </a></h2>
-       <br/>
-     </div>
-    </div>
-  </div>
-
-    <div class="div-toolbar-header-right">
-      <h1> Emisije Co2 v okolje </h1>
-      <hr/>
-            <form action="">
-              <div class="div-control-checkbox">
-                <input id="checkbox-train" type="checkbox" onclick="ResetStations();" onmouseover="ButtonHelpInfo(9);" name="vehicle" value="Train" checked>Slovenske železnice
-                <input id="checkbox-bus" type="checkbox" onclick="ResetStations();" onmouseover="ButtonHelpInfo(10);" name="vehicle" value="Bus" checked>LPP - Ljubljanski potniški promet
-                <input id="checkbox-traffic" type="checkbox" onclick="ResetStations();" onmouseover="ButtonHelpInfo(11);" name="vehicle" value="Traffic" checked>Google Traffic ( On / Off )<br/>
-              </div>
-              <div class="div-control-checkbox">
-                <input id="checkbox-camera" type="checkbox" onclick="ResetStations();" onmouseover="ButtonHelpInfo(11);" name="vehicle" value="Camera">DARS kamere ( Alfa )
-                <input id="checkbox-weather" type="checkbox" onclick="ResetStations();" onmouseover="ButtonHelpInfo(12);" name="vehicle" value="Weather">ARSO - Vreme ( Beta )
-                <input id="checkbox-gama" type="checkbox" onclick="ResetStations();" onmouseover="ButtonHelpInfo(13);" name="vehicle" value="Gama">NEK - Gama karte<br/>
-              </div>
-            </form>
-
-            <div id="div-console-debug"></div>
-             <hr/>
-    </div>
-  </div>
-
-  <div id="div-map-canvas-wrapper">
-    <div id="div-map-canvas-wrapper-left">
-      <div id="div-map-canvas"></div>
-    </div>
-    <div id="div-map-canvas-wrapper-right">
-        <iframe id="iframe-documentation" src="./out/Transit.html"></iframe>
-
-          <h1> Documentation - Transit.js </h1>
-        <div id="div-iframe-threejs-3d">
-          <iframe id="iframe-threejs-3d" src="./threejs-3dmodels/threejs-loader.html"></iframe>
-        </div>
-        <div id="div-control-buttons-augmented-reality-settings">
-
-                <form action="">
-                    <div class="div-control-checkbox">
-
-                      <input id="checkbox-console-auto" type="checkbox" onclick="UpdateDocumentationInformation('main');" name="console-button" value="Console-Auto">Autoclear console
-                      <input id="checkbox-augmented-reality" type="checkbox" onclick="DisplayAugmentedReality()" name="augmented-reality-button" value="Augmented-Reality-On">Augmented reality (On/Off)
-
-                    </div>
-
-                    <div class="div-control-buttons">
-                      <input type="button" onmouseover="ButtonHelpInfo(7);" onclick="ZoomBus();" value="Zoom:Bus"/>
-                      <input type="button" onmouseover="ButtonHelpInfo(8);" onclick="ZoomTrain();" value="Zoom:Train"/>
-                      <input type="button" onmouseover="ButtonHelpInfo(9);" onclick="ZoomHelicopter();" value="Zoom:Helicopter"/>
-                    </div>
-
-                </form>
-
-          </div>
-
+    <div id="div-main-wrapper">
+          <div id="emisije-top"></div>
+          <div class="div-toolbar-header-3col">
+          <div class="div-toolbar-header">
             <div class="div-toolbar-header-frame">
-             <div class="div-control-buttons">
-               <br/>
-               <br/>
+              <div id="div-control-box">
+                  <div class="div-control-buttons">
+                    <input type="button" onmouseover="ButtonHelpInfo(7);" onclick="StartMacro(1);" value="Start()"/>
+                  </div>
+                  <div id="div-console-data"></div>
+                </div>
+
              </div>
 
+          <div class="div-toolbar-header-frame">
+            <div class="div-control-buttons">
+               <input type="button" onmouseover="ButtonHelpInfo(1);" onclick="ResetStations();" value="Reset Map"/>
+               <input type="button" onmouseover="ButtonHelpInfo(2);" onclick="ResetMarkers();" value="Reset Markers"/>
+               <input type="button" onmouseover="ButtonHelpInfo(3);" onclick="DeleteLastMarker();" value="Delete ( last ) marker"/>
+             </div>
+
+            <div class="div-control-buttons">
+              <input type="button" onmouseover="ButtonHelpInfo(4);" onclick="ZoomStationX();" value="Zoom:Default"/>
+              <input type="button" onmouseover="ButtonHelpInfo(5);" onclick="ZoomStationA();" value="ZoomA"/>
+              <input type="button" onmouseover="ButtonHelpInfo(6);" onclick="ZoomStationB();" value="ZoomB"/>
            </div>
-      </div>
-
-  <div class="div-toolbar-footer">
-        <div class="div-toolbar-footer-frame">
-          <div id="div-toolbar-footer-left"></div>
+           <div class="div-control-buttons">
+             <br/>
+             <h2><a id="hd-image-link" onclick="SwitchAugmentedReality()" href="#emisije-top"> --- ( HD Augmented Reality Image ) --- </a></h2>
+             <br/>
+           </div>
+          </div>
         </div>
 
-        <div class="div-toolbar-footer-frame">
-          <div id="div-toolbar-footer-right"></div>
+          <div class="div-toolbar-header-right">
+            <h1> Emisije Co2 v okolje </h1>
+            <hr/>
+                  <form action="">
+                    <div class="div-control-checkbox">
+                      <input id="checkbox-train" type="checkbox" onclick="ResetStations();" onmouseover="ButtonHelpInfo(9);" name="vehicle" value="Train" checked>Slovenske železnice
+                      <input id="checkbox-bus" type="checkbox" onclick="ResetStations();" onmouseover="ButtonHelpInfo(10);" name="vehicle" value="Bus" checked>LPP - Ljubljanski potniški promet
+                      <input id="checkbox-traffic" type="checkbox" onclick="ResetStations();" onmouseover="ButtonHelpInfo(11);" name="vehicle" value="Traffic" checked>Google Traffic ( On / Off )<br/>
+                    </div>
+                    <div class="div-control-checkbox">
+                      <input id="checkbox-camera" type="checkbox" onclick="ResetStations();" onmouseover="ButtonHelpInfo(11);" name="vehicle" value="Camera">DARS kamere ( Alfa )
+                      <input id="checkbox-weather" type="checkbox" onclick="ResetStations();" onmouseover="ButtonHelpInfo(12);" name="vehicle" value="Weather">ARSO - Vreme ( Beta )
+                      <input id="checkbox-gama" type="checkbox" onclick="ResetStations();" onmouseover="ButtonHelpInfo(13);" name="vehicle" value="Gama">NEK - Gama karte<br/>
+                    </div>
+                  </form>
+
+                  <div id="div-console-debug"></div>
+                   <hr/>
+          </div>
         </div>
-  </div>
 
-      <div class="div-toolbar-footer-breadcrumbs">
-        <a target="_blank" href="https://bus.lpp.si/">bus.lpp.si</a></h1>
-        <br/>
-        <a target="_blank" href="https://plus.google.com/102962854949157079552/auto">ZekomZ - Zekom Tribute Magazine</a>
-        O
-        <a target="_blank" href="https://www.facebook.com/ZekomTributeMagazine">www.facebook.com/ZekomTributeMagazine</a>
-        <br>Zekom Tribute Magazine - Community Page about All your base are belong to us
-        <br>·<a target="_blank" href="https://en.wikipedia.org/wiki/All_your_base_are_belong_to_us"> https://en.wikipedia.org/wiki/All_your_base_are_belong_to_us· </a>
+        <div id="div-map-canvas-wrapper">
+          <div id="div-map-canvas-wrapper-left">
+            <div id="div-map-canvas"></div>
+          </div>
+          <div id="div-map-canvas-wrapper-right">
+              <iframe id="iframe-documentation" src="./out/Transit.html"></iframe>
+
+                <h1> Documentation - Transit.js </h1>
+              <div id="div-iframe-threejs-3d">
+                <iframe id="iframe-threejs-3d" src="./threejs-3dmodels/threejs-loader.html"></iframe>
+              </div>
+              <div id="div-control-buttons-augmented-reality-settings">
+
+                      <form action="">
+                          <div class="div-control-checkbox">
+
+                            <input id="checkbox-console-auto" type="checkbox" onclick="UpdateDocumentationInformation('main');" name="console-button" value="Console-Auto">Autoclear console
+                            <input id="checkbox-augmented-reality" type="checkbox" onclick="DisplayAugmentedReality()" name="augmented-reality-button" value="Augmented-Reality-On">Augmented reality (On/Off)
+
+                          </div>
+
+                          <div class="div-control-buttons">
+                            <input type="button" onmouseover="ButtonHelpInfo(7);" onclick="ZoomBus();" value="Zoom:Bus"/>
+                            <input type="button" onmouseover="ButtonHelpInfo(8);" onclick="ZoomTrain();" value="Zoom:Train"/>
+                            <input type="button" onmouseover="ButtonHelpInfo(9);" onclick="ZoomHelicopter();" value="Zoom:Helicopter"/>
+                          </div>
+
+                      </form>
+
+                </div>
+
+                  <div class="div-toolbar-header-frame">
+                   <div class="div-control-buttons">
+                     <br/>
+                     <br/>
+                   </div>
+
+                 </div>
+            </div>
+
+        <div class="div-toolbar-footer">
+              <div class="div-toolbar-footer-frame">
+                <div id="div-toolbar-footer-left"></div>
+              </div>
+
+              <div class="div-toolbar-footer-frame">
+                <div id="div-toolbar-footer-right"></div>
+              </div>
+        </div>
+
+            <div class="div-toolbar-footer-breadcrumbs">
+              <br/>
+              <a target="_blank" href="https://plus.google.com/102962854949157079552/auto">ZekomZ - Zekom Tribute Magazine</a>
+              O
+              <a target="_blank" href="https://www.facebook.com/ZekomTributeMagazine">www.facebook.com/ZekomTributeMagazine</a>
+              <br>Zekom Tribute Magazine - Community Page about All your base are belong to us
+              <br>·<a target="_blank" href="https://en.wikipedia.org/wiki/All_your_base_are_belong_to_us"> https://en.wikipedia.org/wiki/All_your_base_are_belong_to_us· </a>
+            </div>
+             <hr>
+
+                            <div id="div-hd-image">
+                              <img id="img-zekom-street-view" src="./images/1325703602155-All-Glory-To-The-Hypnocat.gif" width="100%"/>
+                              <iframe id="iframe-threejs-3d-max" src="./threejs-3dmodels/threejs-loader.html"></iframe>
+                            <div>
       </div>
-       <hr>
-
-                      <div id="div-hd-image">
-                        <img id="img-zekom-street-view" src="./images/1325703602155-All-Glory-To-The-Hypnocat.gif" width="100%"/>
-                        <iframe id="iframe-threejs-3d-max" src="./threejs-3dmodels/threejs-loader.html"></iframe>
-                      <div>
-
   </body>
 </html>

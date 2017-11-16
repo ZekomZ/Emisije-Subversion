@@ -208,7 +208,7 @@ var TrainScheduleStationsData = [['42001','Dobova'],['42002','Brežice'],['42003
 var TrainStationMarkers=[];
 
 //https://thenounproject.com/term/train/4420/
-
+/*
 var TransitTrainStationIcon = {
 url: './images/MTS_Trolley_icon.png',
 // This marker is 33 pixels wide by 33 pixels high.
@@ -217,6 +217,16 @@ size: new google.maps.Size(33 , 33),
 origin: new google.maps.Point(0, 0),
 // The anchor for this image is the base of the flagpole at (0, 32).
 anchor: new google.maps.Point(16, 55)
+};
+*/
+var TransitTrainStationIcon = {
+url: './images/MTS_Trolley_icon(Station).png',
+// This marker is 20 pixels wide by 32 pixels high.
+size: new google.maps.Size(33, 33),
+// The origin for this image is (0, 0).
+origin: new google.maps.Point(0, 0),
+// The anchor for this image is the base of the flagpole at (0, 32).
+anchor: new google.maps.Point(15, 10)
 };
 
 /**
@@ -247,8 +257,9 @@ FunctionStart(this.FunctionRef);
       marker = new google.maps.Marker({
               position: TrainScheduleStations[i],
               title: TrainScheduleStationsData[i][0].toString() + '#' + TrainScheduleStationsData[i][1].toString(),
-              map: map,
-              icon:TransitTrainStationIcon
+              icon:TransitTrainStationIcon,
+              zIndex:zIndexTrainStation,
+              map: map
           });
       TrainStationMarkers.push(marker);
 
@@ -256,20 +267,17 @@ FunctionStart(this.FunctionRef);
       {
           stationID:i
       }
+
       StationMarkerObjects.push( markerObject );
 
-      google.maps.event.addListener(TrainStationMarkers[i],
+      /*google.maps.event.addListener(TrainStationMarkers[i],
              'click', function(i)
              {
-                 return function()
-                 {
-                     //alert("AddListener:Marker:"+i);
-
-                     // Add listener for train station markers
-                 }
-
+                 map.panTo(TrainStationMarkers[i].getPosition());
+                 map.setZoom(map.getZoom()+1);
+                 // alert(i);
              }(i)
-          );
+          );*/
   }
 
 /*

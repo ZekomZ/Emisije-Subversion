@@ -79,8 +79,19 @@ var TrainStationCount=0;
 var TransitPathCoordinates=[];
 var TransitFunctionCalls=0;
 var AutoClearConsole=111;
+var GlobalTransitPathSingleIndex=0;
+var GlobalTransitPathInstanceBusy=-1;
+var GlobalTransitLineRefreshRate=55;
+var GlobalZoomRefresh=Date.now();
+var zIndexBusStation=11;
+var zIndexTrainStation=22;
+var zIndexBusPath=5;
+var zIndexTrainPath=9;
+var zIndexTrainMarker=550;
+
 /**@global*/
 var map=null;
+var centerPositionLatLng=null;
 
 
 try
@@ -201,7 +212,8 @@ size: new google.maps.Size(16, 20),
 origin: new google.maps.Point(0, 0),
 // The anchor for this image is the base of the flagpole at (0, 32).
 anchor: new google.maps.Point(8, 10),
-fillOpacity:0.3
+
+fillOpacity:0.5
 };
 
 }
@@ -357,30 +369,43 @@ function Initialize()
 {
 this.FunctionRef=Initialize;
 FunctionStart(this.FunctionRef);
-try
+//try
 {
   // See : {@link https://developers.google.com/maps/documentation/javascript/markers}
+  centerPositionLatLng=new google.maps.LatLng(46.0587303,14.5126836);
   var mapOptions = {
   zoom: 9,
-  // Center the map on Kamnik, Slovenija.
-  center: new google.maps.LatLng(46.0587, 14.5127)
+  center: new google.maps.LatLng(46.0587, 14.7111),
+  gestureHandling: 'greedy'
   };
 
     map = new google.maps.Map(document.getElementById('div-map-canvas'), mapOptions);
     trafficLayer.setMap(null);
 
+// https://developers.google.com/maps/documentation/javascript/events
+    map.addListener('center_changed', function() {
+      // 3 seconds after the center of the map has changed, pan back to the
+      // marker.
+      window.setTimeout(function() {
+          CenterMapViewUserMarkers();
+      }, 1000);
+    });
+
 
   ResetMarkers();
 
+
   if ($("input#checkbox-bus:checkbox:checked").val()=="Bus"){AddStationMarkers();}
+
   InitTransitPath();
   UpdateStreetViewLocation(WeatherStationData[0][1],WeatherStationData[0][2]);
   DisplayAugmentedReality();
 
   if ($("input#checkbox-train:checkbox:checked").val()=="Train"){setTimeout(AddTrainStationMarkers(),5111);}
-
   if ($("input#checkbox-camera:checkbox:checked").val()=="Camera"){setTimeout(LoadCameraInfo(),3111);}
   if ($("input#checkbox-weather:checkbox:checked").val()=="Weather"){AddWeatherStationMarkers();}
+  if ($("input#checkbox-train:checkbox:checked").val()=="Train")
+  {TrainMacroInstance=setTimeout(TrainMacroDisplayTimeStart(),7777);}
   if ($("input#checkbox-gama:checkbox:checked").val()=="Gama"){LoadGamaInfo();}
   if ($("input#checkbox-traffic:checkbox:checked").val()=="Traffic"){LoadTrafficInfo();}
 
@@ -389,10 +414,37 @@ try
   google.maps.event.addListener(TransitStationMarkerA, "mouseover", DisplayStationInfo(1,StationInfoWindowA));
   google.maps.event.addListener(TransitStationMarkerB, "mouseover", DisplayStationInfo(2,StationInfoWindowB));
 }
-catch(Error)
+//catch(Error)
 {
-  CatchException(this.FunctionRef,Error);
+//  CatchException(this.FunctionRef,Error);
 }
+}
+
+function CenterMapViewUserMarkers()
+{
+  var Zoom=map.getZoom();
+  if ((Date.now()-GlobalZoomRefresh)<10000)
+  {
+     return;
+  }
+  else
+  {
+    GlobalZoomRefresh=Date.now();
+  }
+  if (UserMarkers.length>0)
+  {
+    map.panTo(UserMarkers[UserMarkers.length-1].getPosition());
+
+    map.setZoom(Zoom-1);
+    map.setZoom(Zoom);
+  }
+  else
+  {
+    map.panTo(centerPositionLatLng);
+
+    map.setZoom(Zoom-1);
+    map.setZoom(Zoom);
+  }
 }
 
 /**
@@ -423,9 +475,9 @@ try
   polyOptions =
   {
   path: path,
-  strokeColor: '#000000',
-  strokeOpacity: 1.0,
-  strokeWeight: 3
+  strokeColor: '#393',
+  strokeOpacity: 0.7,
+  strokeWeight: 2
   };
   if (typeof poly != 'undefined'){ poly.setMap(null); }
   poly = new google.maps.Polyline(polyOptions);
@@ -470,6 +522,9 @@ this.FunctionRef=AddXMLStationRail;
 FunctionStart(this.FunctionRef);
 try
 {
+  if (StationsData[TransitStationMarkerASelectedID] === undefined){return null;}
+  if (StationsData[TransitStationMarkerBSelectedID] === undefined){return null;}
+
   StationAID=StationsData[TransitStationMarkerASelectedID][0];
   StationBID=StationsData[TransitStationMarkerBSelectedID][0];
 
@@ -498,6 +553,7 @@ catch(Error)
 */
 function addLatLng(event)
 {
+
 this.FunctionRef=addLatLng;
 FunctionStart(this.FunctionRef);
 try
@@ -519,7 +575,7 @@ try
   UpdateStreetViewLocation(marker.getPosition().lat(),marker.getPosition().lng());
   UserMarkers.push(marker);
   ResetPolyLine();
-
+  CenterMapViewUserMarkers();
   //INSERT INTO `test`.`Train-Rails-Location`
   //(`IDRailAB`, `IDStationA`, `IDStationB`, `Type`)
   //VALUES ('99999-111111', '99999', '111111', '0');
@@ -570,6 +626,7 @@ try
   UserMarkers=[];
 
   ResetPolyLine();
+  CenterMapViewUserMarkers();
 }
 catch(Error)
 {
@@ -590,6 +647,9 @@ this.FunctionRef=ResetStations;
 FunctionStart(this.FunctionRef);
 try
 {
+  GlobalSimulationSteps=0;
+  GlobalTrainId = 0;
+
     // IE11 does not support of iterator : Adding idexes
     // TransitPathSingleIndex : Iterator for active TransitPath array object
     var TransitPathSingleIndex=0;
@@ -639,6 +699,7 @@ try
   }
 
   ResetPolyLine();
+  CenterMapViewUserMarkers();
 }
 catch(Error)
 {
@@ -791,7 +852,14 @@ this.FunctionRef=ZoomStationA;
 FunctionStart(this.FunctionRef);
 try
 {
-  map.panTo(TransitStationMarkerA.getPosition());
+  CenterMapViewUserMarkers();
+  //map.panTo(TransitStationMarkerA.getPosition());
+
+  ResetMarkers();
+  google.maps.event.trigger(map, 'click', {
+        latLng: TransitStationMarkerA.getPosition()
+  });
+
   window.setTimeout(function() {
     map.setZoom(16);
   }, 500);
@@ -815,14 +883,27 @@ this.FunctionRef=ZoomStationB;
 FunctionStart(this.FunctionRef);
 try
 {
-  map.panTo(TransitStationMarkerA.getPosition());
+  CenterMapViewUserMarkers();
+
+  //map.panTo(TransitStationMarkerA.getPosition());
+
+  ResetMarkers();
+  google.maps.event.trigger(map, 'click', {
+        latLng: TransitStationMarkerA.getPosition()
+  });
 
   window.setTimeout(function() {
     map.setZoom(9);
   }, 500);
 
   window.setTimeout(function() {
-    map.panTo(TransitStationMarkerB.getPosition());
+    //map.panTo(TransitStationMarkerB.getPosition());
+
+      ResetMarkers();
+      google.maps.event.trigger(map, 'click', {
+            latLng: TransitStationMarkerB.getPosition()
+      });
+
   }, 1000);
 
   window.setTimeout(function() {
@@ -848,7 +929,13 @@ this.FunctionRef=ZoomBus;
 FunctionStart(this.FunctionRef);
 try
 {
-  map.panTo(Stations[TransitFunctionCalls%Stations.length]);
+  //map.panTo(Stations[TransitFunctionCalls%Stations.length]);
+
+  ResetMarkers();
+  google.maps.event.trigger(map, 'click', {
+        latLng: Stations[TransitFunctionCalls%Stations.length]
+  });
+
   window.setTimeout(function() {
     map.setZoom(16);
   }, 750);
@@ -873,7 +960,13 @@ this.FunctionRef=ZoomTrain;
 FunctionStart(this.FunctionRef);
 try
 {
-  map.panTo(TrainStations[TransitFunctionCalls%TrainStations.length]);
+  //map.panTo(TrainStations[TransitFunctionCalls%TrainStations.length]);
+    ResetMarkers();
+    google.maps.event.trigger(map, 'click', {
+          latLng: TrainStations[TransitFunctionCalls%TrainStations.length]
+    });
+
+
   window.setTimeout(function() {
     map.setZoom(16);
   }, 111);
@@ -905,7 +998,13 @@ try
   }
   HelicopterLatLng=GamaKartaLatLng[TransitFunctionCalls%GamaKartaLatLng.length];
   //alert ("Helicopter : "+ TransitFunctionCalls +"-"+GamaKartaLatLng.length)
-  map.panTo(HelicopterLatLng);
+  //map.panTo(HelicopterLatLng);
+
+  ResetMarkers();
+  google.maps.event.trigger(map, 'click', {
+        latLng: HelicopterLatLng
+  });
+
   window.setTimeout(function() {
     map.setZoom(13);
   }, 100);
@@ -929,8 +1028,9 @@ this.FunctionRef=ZoomStationX;
 FunctionStart(this.FunctionRef);
 try
 {
-  map.panTo(new google.maps.LatLng(46.0587, 14.5127));
+  map.panTo(centerPositionLatLng);
   window.setTimeout(function() {
+    CenterMapViewUserMarkers();
     map.setZoom(9);
   }, 2000);
 }
@@ -964,7 +1064,8 @@ try
               position: Stations[i],
               title: StationsData[i][0].toString() + '#' + StationsData[i][1].toString(),
               map: map,
-              icon:TransitStationIcon
+              icon:TransitStationIcon,
+              zIndex:zIndexBusStation
           })
       StationMarkers.push(marker);
 
@@ -1122,6 +1223,7 @@ try
     offset: '100%'
   }],
   strokeWeight: 0,
+  zIndex: zIndexBusPath,
   map: map
 
   }));
@@ -1209,9 +1311,20 @@ try
 
   window.setInterval(function AnimateBus() {
 
-    for (TransitPathSingleIndex=0;TransitPathSingleIndex<TransitPath.length;TransitPathSingleIndex++)
+    if (GlobalTransitPathInstanceBusy!=-1)
+    {return;}
+
+    var StartTransitLine=GlobalTransitPathSingleIndex;
+    var EndTransitLine=StartTransitLine+GlobalTransitLineRefreshRate;
+    if (EndTransitLine>=TransitPath.length)
+    {EndTransitLine = TransitPath.length-1;}
+
+    for (var i = StartTransitLine; i<EndTransitLine;i++)
     {
-      TransitPathSingle=TransitPath[TransitPathSingleIndex];
+      GlobalTransitPathSingleIndex=i;
+      GlobalTransitPathInstanceBusy=GlobalTransitPathSingleIndex;
+
+      TransitPathSingle=TransitPath[GlobalTransitPathSingleIndex];
 
       count = (count + 1) % 200;
 
@@ -1219,7 +1332,11 @@ try
       icons[0].offset = (count / 2) + '%';
       TransitPathSingle.set('icons', icons);
     }
-  }, 1111);
+
+    GlobalTransitPathSingleIndex++;
+    GlobalTransitPathSingleIndex=GlobalTransitPathSingleIndex%TransitPath.length;
+    GlobalTransitPathInstanceBusy=-1;
+  }, 111);
 }
 catch(Error)
 {
@@ -1296,6 +1413,12 @@ this.FunctionRef=StartMacro;
 FunctionStart(this.FunctionRef);
 try
 {
+  if (document.getElementById("checkbox-bus").checked==false)
+  {
+    document.getElementById("checkbox-bus").checked=true;
+    ResetStations();
+  }
+
   Station=Math.ceil(Math.random()*(StationMarkers.length-1));
   SelectStationMarker(Station);
 

@@ -386,9 +386,9 @@ FunctionStart(this.FunctionRef);
     map.addListener('center_changed', function() {
       // 3 seconds after the center of the map has changed, pan back to the
       // marker.
-      window.setTimeout(function() {
+      //window.setTimeout(function() {
           CenterMapViewUserMarkers();
-      }, 300);
+      //}, 300);
     });
 
 

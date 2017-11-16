@@ -561,6 +561,7 @@ function SetMicroPosition(TrainId)
   for (var i=1; i<NanoSteps; i++)
   {
     NanoPosition=NewMicroPosition+Math.round(i*TrainKMComplete/NanoSteps);
+    if (NanoPosition>100) {NanoPosition=100;}
     setTimeout(function(){SetNanoPosition(TrainId, NanoPosition);},GlobalSimulationRefreshRate*i*NanoSteps);
   }
 

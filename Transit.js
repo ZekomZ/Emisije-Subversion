@@ -388,7 +388,7 @@ FunctionStart(this.FunctionRef);
       // marker.
       window.setTimeout(function() {
           CenterMapViewUserMarkers();
-      }, 1000);
+      }, 300);
     });
 
 
@@ -862,7 +862,7 @@ try
 
   window.setTimeout(function() {
     map.setZoom(16);
-  }, 500);
+  }, 100);
 }
 catch(Error)
 {
@@ -894,7 +894,7 @@ try
 
   window.setTimeout(function() {
     map.setZoom(9);
-  }, 500);
+  }, 100);
 
   window.setTimeout(function() {
     //map.panTo(TransitStationMarkerB.getPosition());
@@ -904,11 +904,11 @@ try
             latLng: TransitStationMarkerB.getPosition()
       });
 
-  }, 1000);
+  }, 500);
 
   window.setTimeout(function() {
     map.setZoom(16);
-  }, 1000);
+  }, 500);
 }
 catch(Error)
 {
@@ -938,7 +938,7 @@ try
 
   window.setTimeout(function() {
     map.setZoom(16);
-  }, 750);
+  }, 250);
 }
 catch(Error)
 {
@@ -1032,7 +1032,7 @@ try
   window.setTimeout(function() {
     CenterMapViewUserMarkers();
     map.setZoom(9);
-  }, 2000);
+  }, 100);
 }
 catch(Error)
 {
@@ -1431,7 +1431,7 @@ try
   //$('#div-console-data').append('<br/>-----( ZoomY :) )--------->'+(NewStation === StationBID));
 
   //$('#div-console-data').append('<br/>-----( A:'+StationsData[TransitStationMarkerASelectedID][0]+' B:'+StationsData[TransitStationMarkerBSelectedID][0]+')');
-  setTimeout(ZoomStationA(),500);
+  ZoomStationA();
   /*if (NewStation === StationAID)
   {
     //$('#div-console-data').append('<br/>-----( ZoomA :) )--------->'+StationBID);

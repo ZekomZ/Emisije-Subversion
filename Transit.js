@@ -387,7 +387,7 @@ FunctionStart(this.FunctionRef);
       // 3 seconds after the center of the map has changed, pan back to the
       // marker.
       //window.setTimeout(function() {
-          CenterMapViewUserMarkers();
+          CenterMapViewUserMarkers(-1);
       //}, 300);
     });
 
@@ -420,17 +420,20 @@ FunctionStart(this.FunctionRef);
 }
 }
 
-function CenterMapViewUserMarkers()
+function CenterMapViewUserMarkers(ForceRefresh)
 {
+
   var Zoom=map.getZoom();
-  if ((Date.now()-GlobalZoomRefresh)<10000)
+  if (ForceRefresh==-1)
   {
-     return;
+    if ((Date.now()-GlobalZoomRefresh)<10000)
+    {
+       return;
+    }
   }
-  else
-  {
-    GlobalZoomRefresh=Date.now();
-  }
+
+  GlobalZoomRefresh=Date.now();
+
   if (UserMarkers.length>0)
   {
     map.panTo(UserMarkers[UserMarkers.length-1].getPosition());
@@ -575,7 +578,7 @@ try
   UpdateStreetViewLocation(marker.getPosition().lat(),marker.getPosition().lng());
   UserMarkers.push(marker);
   ResetPolyLine();
-  CenterMapViewUserMarkers();
+  CenterMapViewUserMarkers(0);
   //INSERT INTO `test`.`Train-Rails-Location`
   //(`IDRailAB`, `IDStationA`, `IDStationB`, `Type`)
   //VALUES ('99999-111111', '99999', '111111', '0');
@@ -626,7 +629,7 @@ try
   UserMarkers=[];
 
   ResetPolyLine();
-  CenterMapViewUserMarkers();
+  CenterMapViewUserMarkers(0);
 }
 catch(Error)
 {
@@ -699,7 +702,7 @@ try
   }
 
   ResetPolyLine();
-  CenterMapViewUserMarkers();
+  CenterMapViewUserMarkers(0);
 }
 catch(Error)
 {
@@ -852,7 +855,7 @@ this.FunctionRef=ZoomStationA;
 FunctionStart(this.FunctionRef);
 try
 {
-  CenterMapViewUserMarkers();
+  CenterMapViewUserMarkers(0);
   //map.panTo(TransitStationMarkerA.getPosition());
 
   ResetMarkers();
@@ -883,7 +886,7 @@ this.FunctionRef=ZoomStationB;
 FunctionStart(this.FunctionRef);
 try
 {
-  CenterMapViewUserMarkers();
+  CenterMapViewUserMarkers(0);
 
   //map.panTo(TransitStationMarkerA.getPosition());
 
@@ -1030,7 +1033,7 @@ try
 {
   map.panTo(centerPositionLatLng);
   window.setTimeout(function() {
-    CenterMapViewUserMarkers();
+    CenterMapViewUserMarkers(0);
     map.setZoom(9);
   }, 100);
 }

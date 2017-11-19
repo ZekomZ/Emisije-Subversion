@@ -1256,7 +1256,7 @@ function NewTrainInfoWindow(TrainId)
           }
     });
 
-    google.maps.event.addListener(TrainSchedule[TrainId][IndexTrainInfoWindow],"closeclick", function() {
+    TrainSchedule[TrainId][IndexTrainInfoWindow].addListener("closeclick", function() {
           TrainSchedule[TrainId][IndexTrainInfoWindowIsOpen]=-1;
           NewTrainInfoPathObject(TrainId);
           //alert("TrainId closeclick:"+TrainId);

@@ -59,7 +59,7 @@ function createMarkerCamera(id, point, ime, vrednost, slika, description)
                   contentString+='<h2>'+ime+'</h2><br/>';
                   contentString+='<br/><img id="camera'+id+'" class="img-gama" src="'+slika+'" width="'+imgWidth+'" height="'+imgHeight+'"/><br/>';
                   contentString+='<b>'+description+'</b><br/>';
-                  contentString+="<a href=\"https://www.dars.si/Vsebina/kamere.aspx\" target=\"_blank\">DARS</a>";
+                  contentString+="<a href=\"http://www.dars.si/Vsebina/kamere.aspx\" target=\"_blank\">DARS</a>";
 
                   //setTimeout(RefreshCamera(id,slika),10000);
                   var infowindow = new google.maps.InfoWindow({

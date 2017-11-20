@@ -357,6 +357,8 @@ google.maps.event.addListener(TransitPathAll[TransitPathAll.length-1],
 }
 */
 
+    //google.maps.event.addDomListener(window, 'load', initialize);
+
 /**
 @function Initialize
 @description The function to initialize Google.maps map object to its initial state.
@@ -391,9 +393,7 @@ FunctionStart(this.FunctionRef);
       //}, 300);
     });
 
-
   ResetMarkers();
-
 
   if ($("input#checkbox-bus:checkbox:checked").val()=="Bus"){AddStationMarkers();}
 
@@ -408,6 +408,7 @@ FunctionStart(this.FunctionRef);
   {TrainMacroInstance=setTimeout(TrainMacroDisplayTimeStart(),7777);}
   if ($("input#checkbox-gama:checkbox:checked").val()=="Gama"){LoadGamaInfo();}
   if ($("input#checkbox-traffic:checkbox:checked").val()=="Traffic"){LoadTrafficInfo();}
+
 
   // Add a listener for the click event
   google.maps.event.addListener(map, 'click', addLatLng);

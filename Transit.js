@@ -1,4 +1,4 @@
-var GlobalTransitRevision=230;
+var GlobalTransitRevision=231;
 /**
 * Class wrapper Transit.js
 * @class Transit

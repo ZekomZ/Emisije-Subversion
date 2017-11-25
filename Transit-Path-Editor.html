@@ -18,8 +18,15 @@
     <script type="text/javascript" src="TrainScheduleMacro.js"></script>
 
     <script type="text/javascript" src="Transit.js"></script>
+    <script>
+      function GlobalTransitViewSetToTop()
+      {
+        window.scrollTo(0,0);
+      }
+    </script>
+
   </head>
-  <body>
+  <body onscroll="GlobalTransitViewSetToTop()">
     <div id="div-main-wrapper">
           <div id="emisije-top"></div>
           <div class="div-toolbar-header-3col">

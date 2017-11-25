@@ -1,3 +1,4 @@
+var GlobalTransitRevision=230;
 /**
 * Class wrapper Transit.js
 * @class Transit
@@ -118,6 +119,30 @@ function FunctionStart(Sender)
     }
   }
 }
+
+function TransitClearConsole()
+{
+  try {
+
+          if (typeof console._commandLineAPI !== 'undefined') {
+            console.API = console._commandLineAPI;
+        } else if (typeof console._inspectorCommandLineAPI !== 'undefined') {
+            console.API = console._inspectorCommandLineAPI;
+        } else if (typeof console.clear !== 'undefined') {
+            console.API = console;
+        }
+
+        console.API.clear();
+        console.log('Transit.js, revision '+GlobalTransitRevision+'.')
+
+
+      } catch (e) {
+
+      } finally {
+
+      }
+}
+
 
 /**
 * @function CatchException
@@ -414,6 +439,8 @@ FunctionStart(this.FunctionRef);
   google.maps.event.addListener(map, 'click', addLatLng);
   google.maps.event.addListener(TransitStationMarkerA, "mouseover", DisplayStationInfo(1,StationInfoWindowA));
   google.maps.event.addListener(TransitStationMarkerB, "mouseover", DisplayStationInfo(2,StationInfoWindowB));
+
+  TransitClearConsole();
 }
 //catch(Error)
 {

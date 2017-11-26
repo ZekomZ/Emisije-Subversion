@@ -22,11 +22,18 @@
       function GlobalTransitViewSetToTop()
       {
         window.scrollTo(0,0);
+        window.location.href = "#TransitEditorTop";
       }
+
+    function GlobalTimerViewSetToTop()
+    {
+      window.setInterval(GlobalTransitViewSetToTop(), 1111);
+    }
     </script>
 
   </head>
-  <body onscroll="GlobalTransitViewSetToTop()">
+  <body onscroll="GlobalTransitViewSetToTop()" onload="GlobalTimerViewSetToTop()" >
+    <a name="#TransitEditorTop"></a>
     <div id="div-main-wrapper">
           <div id="emisije-top"></div>
           <div class="div-toolbar-header-3col">

@@ -32,17 +32,18 @@
   function GlobalTransitEditorDefaultView()
   {
     document.getElementById("transit-map").style.height = "1455px";
-    window.location.href = "#TransitEditorTop";
+    document.getElementById("transit-map").src="#TransitEditorTop";
   }
 
 function GlobalTimerEditorDefaultView()
 {
-  window.setInterval(GlobalTransitEditorDefaultView(), 11);
+  window.setInterval(GlobalTransitEditorDefaultView(), 1111);
 }
+
 </script>
 
 </head>
-<body onload="GlobalTimerEditorDefaultView()" ><div id="div-cookies">This site uses cookies. Click OK to continue.
+<body onload="GlobalTimerEditorDefaultView()"><div id="div-cookies">This site uses cookies. Click OK to continue.
   <div id="div-cookies-ok"> <a href="#">OK</a> </div>
 </div>
 

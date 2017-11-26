@@ -7,7 +7,7 @@ html, body {
   h1
   {
     color:#393;
-    text-align: center;
+    text-align: left;
     margin-top: 5px;
     margin-bottom: 5px;
   }
@@ -74,8 +74,8 @@ a:hover
 #div-hd-image
 {
   position: absolute;
-  top : 33em;
-  left: 7em;
+  top : 101px;
+  left: 5em;
   width: 65%;
   height: 69em;
   background: transparent;
@@ -144,10 +144,17 @@ a:hover
 
 .div-toolbar-header-3col
 {
-    width:100%;
+    width:111%;
     height:250px;
     overflow: hidden;
     margin-bottom: 0px;
+    margin-left:11px;
+    margin-right:111px;
+    position:relative;
+    top:0em;
+    left:3em;
+    clear:both;
+    display:block;
 }
 .div-toolbar-header
 {
@@ -178,9 +185,13 @@ a:hover
 
 #div-map-canvas-wrapper
 {
+  position:absolute;
   width:100%;
   height:955px;
   background: #FFEEFF right top;
+  margin-top:155px;
+  top:105px;
+  left:0px;
 }
 
 #div-map-canvas-wrapper-left

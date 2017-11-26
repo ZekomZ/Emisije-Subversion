@@ -11,7 +11,7 @@ iframe
 {
   clear:both;
   width:96%;
-  height:1655px;
+  height:1555px;
   margin-right:1%;
   float:right;
 }
@@ -20,7 +20,17 @@ iframe
 {
   width:96%;
   overflow: hidden;
-  height:1455px;
+  height:1475px;
+}
+
+#TransitJS-main-toolbar-div
+{
+  position:absolute;
+  top:0px;
+  left:0px;
+  float: left;
+  clear:both;
+  display:block;
 }
 
 iframe.iframe-transit-map

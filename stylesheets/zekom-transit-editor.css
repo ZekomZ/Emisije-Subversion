@@ -145,7 +145,7 @@ a:hover
 .div-toolbar-header-3col
 {
     width:99%;
-    min-width: 222em;
+    min-width: 99%;
     height:235px;
     overflow: hidden;
     margin-bottom: 0px;

@@ -106,7 +106,7 @@
 	<div id="controls">
 		<div class="control" id="scenes_control">
 		Model
-		<select class="controlValue" id="scenes_list" size="1" onchange="selectScene();" ondblclick="selectScene();"><option>Monster</option><option>Duck</option><option>Cesium Man</option><option selected="selected">Cesium Milk Truck</option></select>
+		<select class="controlValue" id="scenes_list" size="1" onchange="selectScene();" ondblclick="selectScene();"><option>Monster</option><option>Duck</option><option selected="selected">Cesium Man</option><option>Cesium Milk Truck</option></select>
 		</div>
 
 		<div class="control" id="cameras_control">
@@ -394,136 +394,18 @@
 			}
 
 			var sceneList = [
-
 				{
-					name : "Cesium : Milk truck - Cat",
-					url : "./SampleData/models/CesiumMilkTruck-A/CesiumMilkTruck.gltf",
-					cameraPos: new THREE.Vector3(0, 1, 10),
+					name : "FlightRadar : Cessna Citation II",
+					url : "./FlightRadar24/citation.gltf",
+					cameraPos: new THREE.Vector3(0, 1, -15),
 					addLights:true,
 					addGround:true,
 					shadows:true
 				},
 				{
-					name : "Cesium : Milk truck",
-					url : "./SampleData/models/CesiumMilkTruck/CesiumMilkTruck.gltf",
-					cameraPos: new THREE.Vector3(0, 1, 10),
-					addLights:true,
-					addGround:true,
-					shadows:true
-				},
-				{
-					name : "Cesium : Milk truck - X - Red",
-					url : "./SampleData/models/CesiumMilkTruck-X-Red/CesiumMilkTruck.gltf",
-					cameraPos: new THREE.Vector3(0, 1, 10),
-					addLights:true,
-					addGround:true,
-					shadows:true
-				},
-				{
-					name : "Cesium : Milk truck - Y - Green",
-					url : "./SampleData/models/CesiumMilkTruck-Y-Green/CesiumMilkTruck.gltf",
-					cameraPos: new THREE.Vector3(0, 1, 10),
-					addLights:true,
-					addGround:true,
-					shadows:true
-				},
-				{
-					name : "Cesium : Milk truck - Z - Blue",
-					url : "./SampleData/models/CesiumMilkTruck-Z-Blue/CesiumMilkTruck.gltf",
-					cameraPos: new THREE.Vector3(0, 1, 10),
-					addLights:true,
-					addGround:true,
-					shadows:true
-				},
-				{
-					name : "Cesium : Man",
-					url : "./SampleData/models/CesiumMan/Cesium_Man.gltf",
-					cameraPos: new THREE.Vector3(0, 1, 9),
-					addLights:true,
-					addGround:true,
-					shadows:true
-				},
-
-
-								{
-
-									name : "Dinosaur A : ( t ) - Rex",
-									url : "./Dinosaurs/t-Rex.gltf",
-									cameraPos: new THREE.Vector3(-7, 6, 7),
-									addLights:true,
-									addGround:false,
-									shadows:true
-								},
-
-									{
-
-									name : "Dinosaur B : Triceratops",
-									url : "./Dinosaurs/Triceratops.gltf",
-									cameraPos: new THREE.Vector3(-7, 1, 1),
-									addLights:true,
-									addGround:false,
-									shadows:true
-								},
-
-								{
-
-									name : "Dinosaur C : Bird",
-									url : "./Dinosaurs/DinosaurBird.gltf",
-									cameraPos: new THREE.Vector3(-3, -2, 7),
-									addLights:true,
-									addGround:false,
-									shadows:true
-								},
-
-								{
-
-									name : "Dinosaur D : Dilophosaurus",
-									url : "./Dinosaurs/DinoD.gltf",
-									cameraPos: new THREE.Vector3(-45, 95, 35),
-									addLights:true,
-									addGround:true,
-									shadows:true
-								},
-
-								{
-									name : "Dinosaur E : Brachiosarus",
-									url : "./Dinosaurs/DinoB.gltf",
-									cameraPos: new THREE.Vector3(-3, -11, 17),
-									addLights:true,
-									addGround:true,
-									shadows:true
-								},
-
-				{
-					name : "Cesium : Ground vehicle", url : "./SampleData/models/CesiumGround/Cesium_Ground.gltf",
-					cameraPos: new THREE.Vector3(30, 10, 70),
-					objectScale: new THREE.Vector3(0.4, 0.4, 0.4),
-					objectPosition: new THREE.Vector3(2, 1, 0),
-					objectRotation: new THREE.Euler(0, - 3 * Math.PI / 4, 0),
-					animationTime: 3,
-					addLights:true,
-					shadows:true,
-					addGround:true
-				},
-				{
-					name : "Cesium : Airplane", url : "./SampleData/models/CesiumAir/Cesium_Air.gltf",
-					cameraPos: new THREE.Vector3(0, 1, 5),
-					addLights:true,
-					addGround:true,
-					shadows:true
-				},
-				{
-					name : "Cesium : Balloon",
-					url : "./SampleData/models/FlightRadarBase/CesiumBalloon.gltf",
-					cameraPos: new THREE.Vector3(0, 1, -44),
-					addLights:true,
-					addGround:true,
-					shadows:true
-				},
-				{
-					name : "Cesium : Wood tower",
-					url : "./SampleData/models/WoodTower/Wood_Tower.gltf",
-					cameraPos: new THREE.Vector3(0, 3, 10),
+					name : "FlightRadar : Piper PA-28",
+					url : "./FlightRadar24/pa28.gltf",
+					cameraPos: new THREE.Vector3(0, 1, -22),
 					addLights:true,
 					addGround:true,
 					shadows:true
@@ -545,6 +427,30 @@
 					addGround:true,
 					shadows:true
 				},
+				{
+					name : "Cesium : Airplane", url : "./SampleData/models/CesiumAir/Cesium_Air.gltf",
+					cameraPos: new THREE.Vector3(0, 1, -22),
+					addLights:true,
+					addGround:true,
+					shadows:true
+				},
+				{
+					name : "Cesium : Balloon",
+					url : "./SampleData/models/FlightRadarBase/CesiumBalloon.gltf",
+					cameraPos: new THREE.Vector3(0, 1, -44),
+					addLights:true,
+					addGround:true,
+					shadows:true
+				},
+				{
+					name : "Cesium : Wood tower",
+					url : "./SampleData/models/WoodTower/Wood_Tower.gltf",
+					cameraPos: new THREE.Vector3(0, 3, 10),
+					addLights:true,
+					addGround:true,
+					shadows:true
+				},
+
 
 
 
@@ -767,22 +673,7 @@
 					addGround:true,
 					shadows:true
 				},
-				{
-					name : "FlightRadar : Cessna Citation II",
-					url : "./FlightRadar24/citation.gltf",
-					cameraPos: new THREE.Vector3(0, 1, -44),
-					addLights:true,
-					addGround:true,
-					shadows:true
-				},
-				{
-					name : "FlightRadar : Piper PA-28",
-					url : "./FlightRadar24/pa28.gltf",
-					cameraPos: new THREE.Vector3(0, 1, -44),
-					addLights:true,
-					addGround:true,
-					shadows:true
-				},
+
 				{
 					name : "FlightRadar : Bombardier CRJ700",
 					url : "FlightRadar24/crj700.gltf",
@@ -870,6 +761,117 @@
 					addLights:true,
 					addGround:true,
 					shadows:true
+				}
+,
+				{
+					name : "Cesium : Milk truck",
+					url : "./SampleData/models/CesiumMilkTruck/CesiumMilkTruck.gltf",
+					cameraPos: new THREE.Vector3(0, 1, 10),
+					addLights:true,
+					addGround:true,
+					shadows:true
+				},
+				{
+					name : "Cesium : Milk truck - Cat",
+					url : "./SampleData/models/CesiumMilkTruck-A/CesiumMilkTruck.gltf",
+					cameraPos: new THREE.Vector3(0, 1, 10),
+					addLights:true,
+					addGround:true,
+					shadows:true
+				},
+				{
+					name : "Cesium : Milk truck - X - Red",
+					url : "./SampleData/models/CesiumMilkTruck-X-Red/CesiumMilkTruck.gltf",
+					cameraPos: new THREE.Vector3(0, 1, 10),
+					addLights:true,
+					addGround:true,
+					shadows:true
+				},
+				{
+					name : "Cesium : Milk truck - Y - Green",
+					url : "./SampleData/models/CesiumMilkTruck-Y-Green/CesiumMilkTruck.gltf",
+					cameraPos: new THREE.Vector3(0, 1, 10),
+					addLights:true,
+					addGround:true,
+					shadows:true
+				},
+				{
+					name : "Cesium : Milk truck - Z - Blue",
+					url : "./SampleData/models/CesiumMilkTruck-Z-Blue/CesiumMilkTruck.gltf",
+					cameraPos: new THREE.Vector3(0, 1, 10),
+					addLights:true,
+					addGround:true,
+					shadows:true
+				},
+				{
+					name : "Cesium : Man",
+					url : "./SampleData/models/CesiumMan/Cesium_Man.gltf",
+					cameraPos: new THREE.Vector3(0, 1, 9),
+					addLights:true,
+					addGround:true,
+					shadows:true
+				},
+
+
+								{
+
+									name : "Dinosaur A : ( t ) - Rex",
+									url : "./Dinosaurs/t-Rex.gltf",
+									cameraPos: new THREE.Vector3(-7, 6, 7),
+									addLights:true,
+									addGround:false,
+									shadows:true
+								},
+
+									{
+
+									name : "Dinosaur B : Triceratops",
+									url : "./Dinosaurs/Triceratops.gltf",
+									cameraPos: new THREE.Vector3(-7, 1, 1),
+									addLights:true,
+									addGround:false,
+									shadows:true
+								},
+
+								{
+
+									name : "Dinosaur C : Bird",
+									url : "./Dinosaurs/DinosaurBird.gltf",
+									cameraPos: new THREE.Vector3(-3, -2, 7),
+									addLights:true,
+									addGround:false,
+									shadows:true
+								},
+
+								{
+
+									name : "Dinosaur D : Dilophosaurus",
+									url : "./Dinosaurs/DinoD.gltf",
+									cameraPos: new THREE.Vector3(-45, 95, 35),
+									addLights:true,
+									addGround:true,
+									shadows:true
+								},
+
+								{
+									name : "Dinosaur E : Brachiosarus",
+									url : "./Dinosaurs/DinoB.gltf",
+									cameraPos: new THREE.Vector3(-3, -11, 17),
+									addLights:true,
+									addGround:true,
+									shadows:true
+								},
+
+				{
+					name : "Cesium : Ground vehicle", url : "./SampleData/models/CesiumGround/Cesium_Ground.gltf",
+					cameraPos: new THREE.Vector3(30, 10, 70),
+					objectScale: new THREE.Vector3(0.4, 0.4, 0.4),
+					objectPosition: new THREE.Vector3(2, 1, 0),
+					objectRotation: new THREE.Euler(0, - 3 * Math.PI / 4, 0),
+					animationTime: 3,
+					addLights:true,
+					shadows:true,
+					addGround:true
 				}
 
 			];
